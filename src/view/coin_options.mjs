@@ -1,5 +1,6 @@
 import { chooseCoinSides } from '../update/actions.mjs';
 import { div, button } from 'muvjs/muv-dom';
+import { LINE_NUMBERS } from './line_numbers.mjs';
 
 export const AllCoinOptions = dispatch => {
   const dispatcher = {
@@ -9,13 +10,15 @@ export const AllCoinOptions = dispatch => {
   return model =>
     div({ style: `display: flex; flex-direction: column` })
       (model.coins.map((row, r) =>
-        div({ style: `display: flex; flex-direction: row` })
-          (row.map((cell, c) =>
+        div({ style: `display: flex; flex-direction: row` })(
+          [div()(`${LINE_NUMBERS - r}:`)].concat(row.map((cell, c) =>
             CoinSelection({
               onChoice: (value) => dispatcher.chooseCoinSides(r, c, value)
               , cell: cell
-            })()
+            }
+            )()
           ))
+        )
       ))
 }
 

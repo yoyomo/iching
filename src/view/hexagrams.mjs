@@ -1,4 +1,5 @@
 import { div } from "muvjs/muv-dom";
+import { LINE_NUMBERS } from "./line_numbers.mjs";
 
 export const OpenLine = props => children => div()("＿＿＿　＿＿＿");
 export const ClosedLine = props => children => div()("＿＿＿＿＿＿＿");
@@ -43,7 +44,7 @@ export const SecondHexagram = dispatch => model =>
 export const ChangingLines = dispatch => model =>
   div({ style: 'margin-left: 1rem; margin-right: 1rem;' })(
     model.lines.map((lineValue, i) => {
-      const index = model.lines.length - i;
+      const index = LINE_NUMBERS - i;
       return div()(function () {
         if (lineValue === 6 || lineValue === 9) {
           return ChangingArrow({ index })()
