@@ -11,7 +11,7 @@ export const AllCoinOptions = dispatch => {
     div({ style: `display: flex; flex-direction: column` })
       (model.coins.map((row, r) =>
         div({ style: `display: flex; flex-direction: row` })(
-          [div()(`${LINE_NUMBERS - r}:`)].concat(row.map((cell, c) =>
+          [div({ style: "margin: 1rem;" })(`${LINE_NUMBERS - r}:`)].concat(row.map((cell, c) =>
             CoinSelection({
               onChoice: (value) => dispatcher.chooseCoinSides(r, c, value)
               , cell: cell

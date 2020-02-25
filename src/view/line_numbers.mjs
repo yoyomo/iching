@@ -9,9 +9,9 @@ export const LineNumbers = dispatch => {
   };
 
   return model =>
-    div({ style: 'flex-direction: row' })(
+    div({ style: 'display: flex; flex-direction: column' })(
       model.lines.map((lineValue, r) =>
-        div({style: 'flex-direction: column'})([
+        div({style: 'display: flex; flex-direction: row'})([
           , div()(`${LINE_NUMBERS-r}:`)
           , input({
             style: 'display: block'
