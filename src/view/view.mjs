@@ -1,7 +1,7 @@
 import { div, button } from 'muvjs/muv-dom';
 import { AllCoinOptions } from './coin_options.mjs'
 import { LineNumbers } from './line_numbers.mjs'
-import { FirstHexagram, SecondHexagram } from './hexagrams.mjs'
+import { FirstHexagram, SecondHexagram , ChangingLines} from './hexagrams.mjs'
 
 export const view = dispatch => {
 
@@ -9,6 +9,7 @@ export const view = dispatch => {
   const LineNumbersContent = LineNumbers(dispatch);
   const FirstHexagramContent = FirstHexagram(dispatch);
   const SecondHexagramContent = SecondHexagram(dispatch);
+  const ChangingLinesContent = ChangingLines(dispatch);
 
   return model =>
     div()(
@@ -19,8 +20,7 @@ export const view = dispatch => {
         ]),
         , div({ style: 'display: flex; flex-direction: row' })([
           , FirstHexagramContent(model)
-          , // changes to
-          , div({style: 'margin: 1rem'})()
+          , ChangingLinesContent(model)
           , SecondHexagramContent(model)
         ])
       ]
