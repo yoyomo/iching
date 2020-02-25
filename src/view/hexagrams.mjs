@@ -41,7 +41,7 @@ export const SecondHexagram = dispatch => model =>
   )
 
 export const ChangingLines = dispatch => model =>
-  div({style: 'margin-left: 1rem; margin-right: 1rem;'})(
+  div({ style: 'margin-left: 1rem; margin-right: 1rem;' })(
     model.lines.map((lineValue, i) => {
       const index = model.lines.length - i;
       return div()(function () {

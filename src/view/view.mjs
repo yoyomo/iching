@@ -1,7 +1,7 @@
 import { div, button } from 'muvjs/muv-dom';
 import { AllCoinOptions } from './coin_options.mjs'
 import { LineNumbers } from './line_numbers.mjs'
-import { FirstHexagram, SecondHexagram , ChangingLines} from './hexagrams.mjs'
+import { FirstHexagram, SecondHexagram, ChangingLines } from './hexagrams.mjs'
 
 export const view = dispatch => {
 
