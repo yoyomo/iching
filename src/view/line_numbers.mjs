@@ -9,12 +9,12 @@ export const LineNumbers = dispatch => {
   };
 
   return model =>
-    div({ style: 'display: flex; flex-direction: column' })(
+    div({ class: 'flex flex-column'})(
       model.lines.map((lineValue, r) =>
-        div({style: 'display: flex; flex-direction: row'})([
+        div({class: 'flex flex-row'})([
           , div()(`${LINE_NUMBERS-r}:`)
           , input({
-            style: 'display: block'
+            class: 'db'
             , type: 'number'
             , oninput: (e) => dispatcher.changeLines(r, e.target.valueAsNumber)
             , value: (lineValue || null)

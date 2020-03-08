@@ -14,11 +14,11 @@ export const view = dispatch => {
   return model =>
     div()(
       [
-        , div({ style: 'display: flex; flex-direction: row' })([
+        , div({ class: 'flex flex-row'})([
           , AllCoinOptionsContent(model)
           , LineNumbersContent(model)
         ]),
-        , div({ style: 'display: flex; flex-direction: row' })([
+        , div({ class: 'flex flex-row'})([
           , FirstHexagramContent(model)
           , ChangingLinesContent(model)
           , SecondHexagramContent(model)

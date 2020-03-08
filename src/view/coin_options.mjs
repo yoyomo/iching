@@ -8,10 +8,10 @@ export const AllCoinOptions = dispatch => {
   };
 
   return model =>
-    div({ style: `display: flex; flex-direction: column` })
+    div({ class: 'flex flex-column' })
       (model.coins.map((row, r) =>
-        div({ style: `display: flex; flex-direction: row` })(
-          [div({ style: "margin: 1rem;" })(`${LINE_NUMBERS - r}:`)].concat(row.map((cell, c) =>
+        div({ class: 'flex flex-row' })(
+          [div({ class: 'ma3' })(`${LINE_NUMBERS - r}:`)].concat(row.map((cell, c) =>
             CoinSelection({
               onChoice: (value) => dispatcher.chooseCoinSides(r, c, value)
               , cell: cell
@@ -26,7 +26,7 @@ const HEADS_VALUE = 3;
 const TAILS_VALUE = 2;
 
 export const CoinSelection = props => children =>
-  div({ style: "margin: 1rem;" })(
+  div({ class: 'ma3' })(
     [
       , button({ onclick: () => props.onChoice(HEADS_VALUE) })('heads')
       , button({ onclick: () => props.onChoice(TAILS_VALUE) })('tails')

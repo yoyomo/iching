@@ -11,6 +11,17 @@ module.exports = {
   devServer: {
     contentBase: './docs'
   },
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          'raw-loader'
+        ]
+      }
+    ]
+  },
   plugins: [
     new CopyPlugin([
       { from: 'src/index.html', to: './' },

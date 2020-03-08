@@ -3,9 +3,9 @@ import { LINE_NUMBERS } from "./line_numbers.mjs";
 
 export const OpenLine = props => children => div()("＿＿＿　＿＿＿");
 export const ClosedLine = props => children => div()("＿＿＿＿＿＿＿");
-export const GrayedLine = props => children => div({ style: 'opacity: 25%;' })("＿＿＿＿＿＿＿");
+export const GrayedLine = props => children => div({ class: 'o-20' })("＿＿＿＿＿＿＿");
 export const ChangingArrow = props => children => div()(props.index + 'ー＞');
-export const NonChangingArrow = props => children => div({ style: 'opacity: 0%;' })(props.index + 'ー＞');
+export const NonChangingArrow = props => children => div({ class: 'o-0' })(props.index + 'ー＞');
 
 export const FirstHexagram = dispatch => model =>
   div()(
@@ -42,7 +42,7 @@ export const SecondHexagram = dispatch => model =>
   )
 
 export const ChangingLines = dispatch => model =>
-  div({ style: 'margin-left: 1rem; margin-right: 1rem;' })(
+  div({ class: 'ml3 mr3'})(
     model.lines.map((lineValue, i) => {
       const index = LINE_NUMBERS - i;
       return div()(function () {
