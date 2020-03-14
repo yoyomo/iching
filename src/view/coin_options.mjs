@@ -25,11 +25,20 @@ export const AllCoinOptions = dispatch => {
 const HEADS_VALUE = 3;
 const TAILS_VALUE = 2;
 
+export const Coin = props => {
+  
+  const isHeads = props.value === HEADS_VALUE;
+  const isTails = props.value === TAILS_VALUE;
+  const isSelected = props.cell === props.value;
+
+  return children =>
+      div({ class: `h3 w3 br4 ma2 ${isSelected ? 'bw2 b--solid b--yellow' :''}`, style: `background-color: ${isHeads ? '#cc5e11' : '#406ca5'}`, onclick: () => props.onChoice(props.value) })(isHeads ? 'heads': 'tails')
+}
+
 export const CoinSelection = props => children =>
-  div({ class: 'ma3' })(
+  div({ class: 'ma3 pointer white tc flex flex-row sans-serif' })(
     [
-      , button({ onclick: () => props.onChoice(HEADS_VALUE) })('heads')
-      , button({ onclick: () => props.onChoice(TAILS_VALUE) })('tails')
-      , div()(props.cell)
+      , Coin({...props, value: HEADS_VALUE})()
+      , Coin({...props, value: TAILS_VALUE})()
     ]
   );

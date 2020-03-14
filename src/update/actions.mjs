@@ -14,3 +14,11 @@ export const chooseCoinTotals = (r, value) => {
     value
   }
 }
+
+export const chooseCurrentCoinSide = value => {
+  return {
+    type: "choose-current-coin-side",
+    value
+  }
+};
+
