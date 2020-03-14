@@ -18,7 +18,11 @@ export const update = model => action => {
       break;
 
     case 'choose-current-coin-side':
-      model = updateCoinValues(model, model.currentSelection.r, model.currentSelection.c, action.value);;
+      model = updateCoinValues(model, model.currentSelection.r, model.currentSelection.c, action.value);
+      break;
+
+    case 'choose-current-row-coin-side':
+      model = updateCoinValues(model, model.currentSelection.r, action.c, action.value);
       break;
 
   }
@@ -41,7 +45,7 @@ const updateCoinValues = (model, r, c, value) => {
   model.currentSelection = {...model.currentSelection};
   model.currentSelection.c = (c + 1) % NUMBER_OF_COINS;
   if (model.currentSelection.c === 0) {
-    model.currentSelection.r--;
+    model.currentSelection.r = r - 1;
     if (model.currentSelection.r < 0) model.currentSelection.r = NUMBER_OF_LINES - 1;
   }
 

@@ -22,3 +22,10 @@ export const chooseCurrentCoinSide = value => {
   }
 };
 
+export const chooseCurrentRowCoinSide = (c, value) => {
+  return {
+    type: 'choose-current-row-coin-side',
+    c,
+    value
+  }
+}

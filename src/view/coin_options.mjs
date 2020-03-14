@@ -32,7 +32,12 @@ export const Coin = props => {
   const isSelected = props.cell === props.value;
 
   return children =>
-      div({ class: `h3 w3 br4 ma2 ${isSelected ? 'bw2 b--solid b--yellow' :''}`, style: `background-color: ${isHeads ? '#cc5e11' : '#406ca5'}`, onclick: () => props.onChoice(props.value) })(isHeads ? 'heads': 'tails')
+    div({ 
+      class: `h3 w3 br4 ma2 flex flex-column tc justify-center
+        ${isSelected ? 'bw2 b--solid b--yellow' :''} 
+        ${isHeads ? 'bg-heads' : 'bg-tails'}`,
+      onclick: () => props.onChoice(props.value) })
+  (isHeads ? 'heads': 'tails')
 }
 
 export const CoinSelection = props => children =>
