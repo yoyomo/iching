@@ -32,10 +32,9 @@ export const model =
 {
   coins: new Array(NUMBER_OF_LINES).fill(new Array(NUMBER_OF_COINS).fill(0))
 , lines: new Array(NUMBER_OF_LINES).fill(0)
+//, lines: [6,9,6,9,6,9]
 , currentSelection: {
     r: NUMBER_OF_LINES - 1
   , c: 0
   }
-, hexagramLookUp
-, trigrams
 };
