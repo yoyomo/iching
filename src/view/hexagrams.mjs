@@ -1,6 +1,6 @@
 import { div, span } from "muvjs/muv-dom";
 import { LINE_NUMBERS } from "./line_numbers.mjs";
-import { NUMBER_OF_LINES, trigrams, hexagramLookUp } from '../model/model.mjs';
+import { NUMBER_OF_LINES, trigrams, hexagramLookUp, hexagrams } from '../model/model.mjs';
 
 export const OpenLine = props => children => div()("＿＿＿　＿＿＿");
 export const ClosedLine = props => children => div()("＿＿＿＿＿＿＿");
@@ -71,6 +71,12 @@ export const FirstHexagram = dispatch => model => {
         , div({class: 'mr2'})(n ? `#${n}` : '')
         , div({class: 'o-70'})(pageNumber ? `p.(${pageNumber})` : '')
       ])
+      , hexagrams[n-1] && div({class: 'f1  sans-serif'})([
+        , div()(hexagrams[n-1].kanji)
+        , div()(hexagrams[n-1].glyph)
+        , div()(hexagrams[n-1].chineseName)
+        , div()(hexagrams[n-1].name)
+      ])
     ])
   ])
 }
@@ -126,6 +132,12 @@ export const SecondHexagram = dispatch => model => {
         , div({class: 'mr2'})(n ? `#${n}` : '')
         , div({class: 'o-70'})(pageNumber ? `p.(${pageNumber})` : '')
       ])
+      , hexagrams[n-1] && div({class: 'f1  sans-serif'})([
+        , div()(hexagrams[n-1].kanji)
+        , div()(hexagrams[n-1].glyph)
+        , div()(hexagrams[n-1].chineseName)
+        , div()(hexagrams[n-1].name)
+      ])
     ])
     , div({class: 'tc justify-center flex flex-column ml2 mt1'})([
       , div({class: 'mb2'})([
@@ -153,10 +165,10 @@ export const ChangingOrNonChangingLine = props => children => {
 }
 
 export const ChangingLines = dispatch => model => {
-  
+
   const lowerLines = model.lines.slice(3,6);
   const upperLines = model.lines.slice(0,3);
- 
+
   const isReadingComplete = model.lines.filter(l=>l).length === NUMBER_OF_LINES;
 
   return div({ class: `ml3 mr3 mt1 ${isReadingComplete ? '' : 'o-20'}`})([
