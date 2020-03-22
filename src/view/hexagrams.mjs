@@ -17,14 +17,72 @@ const Line = props => children => {
     return ClosedLine()()
   }
 }
+export const Result = props => children => {
+
+    return props.hexagram && div({class: 'f1 sans-serif tc'})([
+      , div()(props.hexagram.glyph)
+      , div({class: 'mv3'})(props.hexagram.kanji)
+      , div({class: 'f5 b'})([
+        , span()(props.hexagram.bookChinese), 
+        , span()(' / ')
+        , span()(props.hexagram.bookName)
+      ])
+      , div({class: 'flex flex-row tc justify-center f6 mt2'})([
+        , div({class: 'mr2'})(props.number ? `#${props.number}` : '')
+        , div({class: 'o-70'})(props.pageNumber ? `p.(${props.pageNumber})` : '')
+      ])
+    ])
+}
+export const Elements = props => children => {
+
+  return div({class: 'tc flex flex-column mr2 mt1'})([
+    , div({class: 'mb2'})([
+      , div({class: 'o-0'})('____')
+      , div({class: `${props.upperTrigram ? '' : 'o-0'}`})(props.upperTrigram ? props.upperTrigram.element : '___')
+      , div({class: 'o-0'})('____')
+    ])
+    , div({class: 'mb2'})([
+      , div({class: 'o-0'})('____')
+      , div({class: `${props.lowerTrigram ? '' : 'o-0'}`})(props.lowerTrigram ? props.lowerTrigram.element : '___')
+      , div({class: 'o-0'})('____')
+    ])
+    , div({class: 'o-0'})('___')
+  ])
+}
 
 export const FirstHexagram = dispatch => model => {
 
-  const lowerLines = model.lines.slice(3,6);
+  const hexagram = calculateHexagram(model.lines);
+
+  return div({class: 'flex flex-column'})([
+    ,div({class: 'flex flex-row tc justify-center'})([
+      , Elements({
+          upperTrigram: hexagram.upperTrigram
+        , lowerTrigram: hexagram.lowerTrigram})()
+      , AllLines({
+          upperLines: hexagram.upperLines
+        , lowerLines: hexagram.lowerLines
+      })()
+    ])
+    , Result({hexagram: hexagrams[hexagram.n-1], number: hexagram.n, pageNumber: hexagram.pageNumber})()
+  ])
+}
+
+export const AllLines = props => children => {
+
+  return div()([
+    , div({class: 'mb2'})(props.upperLines.map(lineValue => Line({lineValue})()))
+    , div({class: 'mb2'})(props.lowerLines.map(lineValue => Line({lineValue})()))
+  ])
+}
+
+export const calculateHexagram = originalLines => {
+
+  const lowerLines = originalLines.slice(3,6);
   const lowerLinesSymbol = lowerLines.filter(l=>l).map(l => l % 2).join('');
   let lowerTrigramIndex = -1;
   let lowerTrigram
-  
+
   for(let i = 0; i < trigrams.length; i++){
     const trigram = trigrams[i];
     if(trigram.symbol.join('') === lowerLinesSymbol){
@@ -33,11 +91,11 @@ export const FirstHexagram = dispatch => model => {
     }
   };
 
-  const upperLines = model.lines.slice(0,3);
+  const upperLines = originalLines.slice(0,3);
   const upperLinesSymbol = upperLines.filter(l=>l).map(l => l % 2).join('');
   let upperTrigramIndex = -1;
   let upperTrigram
-  
+
   for(let i = 0; i < trigrams.length; i++){
     const trigram = trigrams[i];
     if(trigram.symbol.join('') === upperLinesSymbol){
@@ -50,35 +108,9 @@ export const FirstHexagram = dispatch => model => {
   const n = hexagramLookUp[lowerTrigramIndex] && hexagramLookUp[lowerTrigramIndex][upperTrigramIndex];
   const pageNumber = n * 2 + 3;
 
-  return div({class: 'flex flex-row'})([
-    , div({class: 'tc flex flex-column mr2 mt1'})([
-      , div({class: 'mb2'})([
-        , div({class: 'o-0'})('____')
-        , div({class: `${upperTrigram ? '' : 'o-0'}`})(upperTrigram ? upperTrigram.element : '___')
-        , div({class: 'o-0'})('____')
-      ])
-      , div({class: 'mb2'})([
-        , div({class: 'o-0'})('____')
-        , div({class: `${lowerTrigram ? '' : 'o-0'}`})(lowerTrigram ? lowerTrigram.element : '___')
-        , div({class: 'o-0'})('____')
-      ])
-      , div({class: 'o-0'})('___')
-    ])
-    , div()([
-      , div({class: 'mb2'})(upperLines.map(lineValue => Line({lineValue})()))
-      , div({class: 'mb2'})(lowerLines.map(lineValue => Line({lineValue})()))
-      , div({class: 'flex flex-row tc justify-center'})([
-        , div({class: 'mr2'})(n ? `#${n}` : '')
-        , div({class: 'o-70'})(pageNumber ? `p.(${pageNumber})` : '')
-      ])
-      , hexagrams[n-1] && div({class: 'f1  sans-serif'})([
-        , div()(hexagrams[n-1].kanji)
-        , div()(hexagrams[n-1].glyph)
-        , div()(hexagrams[n-1].chineseName)
-        , div()(hexagrams[n-1].name)
-      ])
-    ])
-  ])
+  const isReadingComplete = originalLines.filter(l=>l).length === NUMBER_OF_LINES;
+
+  return {isReadingComplete, n, pageNumber, upperLines, upperTrigram, lowerLines, lowerTrigram}
 }
 
 export const SecondHexagram = dispatch => model => {
@@ -92,66 +124,15 @@ export const SecondHexagram = dispatch => model => {
     return line;
   })
 
-  const lowerLines = changedLines.slice(3,6);
-  const lowerLinesSymbol = lowerLines.filter(l=>l).map(l => l % 2).join('');
-  let lowerTrigramIndex = -1;
-  let lowerTrigram
-  
-  for(let i = 0; i < trigrams.length; i++){
-    const trigram = trigrams[i];
-    if(trigram.symbol.join('') === lowerLinesSymbol){
-      lowerTrigram = trigram;
-      lowerTrigramIndex = i;
-    }
-  };
-
-  const upperLines = changedLines.slice(0,3);
-  const upperLinesSymbol = upperLines.filter(l=>l).map(l => l % 2).join('');
-  let upperTrigramIndex = -1;
-  let upperTrigram
-  
-  for(let i = 0; i < trigrams.length; i++){
-    const trigram = trigrams[i];
-    if(trigram.symbol.join('') === upperLinesSymbol){
-      upperTrigram = trigram;
-      upperTrigramIndex = i;
-    }
-  };
+  const hexagram = calculateHexagram(changedLines);
 
 
-  const n = hexagramLookUp[lowerTrigramIndex] && hexagramLookUp[lowerTrigramIndex][upperTrigramIndex];
-  const pageNumber = n * 2 + 3;
-
-  const isReadingComplete = model.lines.filter(l=>l).length === NUMBER_OF_LINES;
-
-  return div({class: `flex flex-row ${isReadingComplete ? '' : 'o-20'}`})([
-    , div()([
-      , div({class: 'mb2'})(upperLines.map(lineValue => Line({lineValue})()))
-      , div({class: 'mb2'})(lowerLines.map(lineValue => Line({lineValue})()))
-      , div({class: 'flex flex-row tc justify-center'})([
-        , div({class: 'mr2'})(n ? `#${n}` : '')
-        , div({class: 'o-70'})(pageNumber ? `p.(${pageNumber})` : '')
-      ])
-      , hexagrams[n-1] && div({class: 'f1  sans-serif'})([
-        , div()(hexagrams[n-1].kanji)
-        , div()(hexagrams[n-1].glyph)
-        , div()(hexagrams[n-1].chineseName)
-        , div()(hexagrams[n-1].name)
-      ])
+  return div({class: `flex flex-column ${hexagram.isReadingComplete ? '' : 'o-20'}`})([
+    , div({class: 'flex flex-row tc justify-center'})([
+      , AllLines({upperLines: hexagram.upperLines, lowerLines: hexagram.lowerLines})()
+      , Elements({upperTrigram: hexagram.upperTrigram, lowerTrigram: hexagram.lowerTrigram})()
     ])
-    , div({class: 'tc flex flex-column ml2 mt1'})([
-      , div({class: 'mb2'})([
-        , div({class: 'o-0'})('____')
-        , div({class: `${upperTrigram ? '' : 'o-0'}`})(upperTrigram ? upperTrigram.element : '___')
-        , div({class: 'o-0'})('____')
-      ])
-      , div()([
-        , div({class: 'o-0'})('____')
-        , div({class: `${lowerTrigram ? '' : 'o-0'}`})(lowerTrigram ? lowerTrigram.element : '___')
-        , div({class: 'o-0'})('____')
-      ])
-      , div({class: 'o-0'})('___')
-    ])
+    , Result({hexagram: hexagrams[hexagram.n-1], number: hexagram.n, pageNumber: hexagram.pageNumber})()
   ])
 }
 

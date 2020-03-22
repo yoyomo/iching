@@ -17,7 +17,7 @@ export const view = dispatch => {
     div()(
       [
         , i({src: 'img/circle_i_ching.png', class: 'absolute w1 h1 o-70'})()
-        , div({class: 'vh-100 flex flex-column'})([
+        , div({class: 'vh-100 db'})([
           , div({class: 'w-100 ma3 tc tracked sans-serif'})([
             , h1({class: 'f1'})('I-CHING')
             , h2()('The Book of Changes')
@@ -25,7 +25,7 @@ export const view = dispatch => {
               , div()('Iching only requires you to roll 3 coins, 6 times.')
               , div()([
                 , span()('And have an ')
-                , a({href: '#'})('Iching book')
+                , a({href: 'https://www.amazon.com/dp/1250209056/ref=cm_sw_em_r_mt_dp_U_0EUDEbR4Q423X', alt: '978-1250209054', target: '_blank'})('Iching book')
                 , span()(' ready.')
               ])
             ])
@@ -40,7 +40,7 @@ export const view = dispatch => {
             , ThrowCoinsContent(model)
           ])
         ])
-        , div()([
+        , div({class: 'db'})([
           , div()('Edit coins')
           , div({ class: 'flex flex-row'})([
             , AllCoinOptionsContent(model)

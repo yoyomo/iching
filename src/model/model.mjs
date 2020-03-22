@@ -56,45 +56,45 @@ export const hexagrams = [
 , {kanji: "離"  , wikiChinese: "lí", wikiName: "Radiance", glyph: "䷝", bookChinese: "Li", bookName: "The Clinging, Fire"}
 , {kanji: "咸"  , wikiChinese: "xián", wikiName: "Conjoining", glyph: "䷞", bookChinese: "Hsien", bookName: "Influence (Wooing)"}
 , {kanji: "恆"  , wikiChinese: "héng", wikiName: "Persevering", glyph: "䷟", bookChinese: "Hêng", bookName: "Duration"}
-, {kanji: "遯"  , wikiChinese: "dùn", wikiName: "Retiring", glyph: "䷠", bookChinese: "", bookName: ""}
-, {kanji: "大壯", wikiChinese: "dà zhuàng", wikiName: "Great Invigorating", glyph: "䷡", bookChinese: "", bookName: ""}
-, {kanji: "晉"  , wikiChinese: "jìn", wikiName: "Prospering", glyph: "䷢", bookChinese: "", bookName: ""}
-, {kanji: "明夷", wikiChinese: "míng yí", wikiName: "Darkening of the Light", glyph: "䷣", bookChinese: "", bookName: ""}
-, {kanji: "家人", wikiChinese: "jiā rén", wikiName: "Dwelling People", glyph: "䷤", bookChinese: "", bookName: ""}
-, {kanji: "睽"  , wikiChinese: "kuí", wikiName: "Polarising", glyph: "䷥", bookChinese: "", bookName: ""}
-, {kanji: "蹇"  , wikiChinese: "jiǎn", wikiName: "Limping", glyph: "䷦", bookChinese: "", bookName: ""}
-, {kanji: "解"  , wikiChinese: "xiè", wikiName: "Taking-Apart", glyph: "䷧", bookChinese: "", bookName: ""}
-, {kanji: "損"  , wikiChinese: "sǔn", wikiName: "Diminishing", glyph: "䷨", bookChinese: "", bookName: ""}
-, {kanji: "益"  , wikiChinese: "yì", wikiName: "Augmenting", glyph: "䷩", bookChinese: "", bookName: ""}
-, {kanji: "夬"  , wikiChinese: "guài", wikiName: "Displacement", glyph: "䷪", bookChinese: "", bookName: ""}
-, {kanji: "姤"  , wikiChinese: "gòu", wikiName: "Coupling", glyph: "䷫", bookChinese: "", bookName: ""}
-, {kanji: "萃"  , wikiChinese: "cuì", wikiName: "Clustering", glyph: "䷬", bookChinese: "", bookName: ""}
-, {kanji: "升"  , wikiChinese: "shēng", wikiName: "Ascending", glyph: "䷭", bookChinese: "", bookName: ""}
-, {kanji: "困"  , wikiChinese: "kùn", wikiName: "Confining", glyph: "䷮", bookChinese: "", bookName: ""}
-, {kanji: "井"  , wikiChinese: "jǐng", wikiName: "Welling", glyph: "䷯", bookChinese: "", bookName: ""}
-, {kanji: "革"  , wikiChinese: "gé", wikiName: "Skinning", glyph: "䷰", bookChinese: "", bookName: ""}
-, {kanji: "鼎"  , wikiChinese: "dǐng", wikiName: "Holding", glyph: "䷱", bookChinese: "", bookName: ""}
-, {kanji: "震"  , wikiChinese: "zhèn", wikiName: "Shake", glyph: "䷲", bookChinese: "", bookName: ""}
-, {kanji: "艮"  , wikiChinese: "gèn", wikiName: "Bound", glyph: "䷳", bookChinese: "", bookName: ""}
-, {kanji: "漸"  , wikiChinese: "jiàn", wikiName: "Infiltrating", glyph: "䷴", bookChinese: "", bookName: ""}
-, {kanji: "歸妹", wikiChinese: "guī mèi", wikiName: "Converting the Maiden", glyph: "䷵", bookChinese: "", bookName: ""}
-, {kanji: "豐"  , wikiChinese: "fēng", wikiName: "Abounding", glyph: "䷶", bookChinese: "", bookName: ""}
-, {kanji: "旅"  , wikiChinese: "lǚ", wikiName: "Sojourning", glyph: "䷷", bookChinese: "", bookName: ""}
-, {kanji: "巽"  , wikiChinese: "xùn", wikiName: "Ground", glyph: "䷸", bookChinese: "", bookName: ""}
-, {kanji: "兌"  , wikiChinese: "duì", wikiName: "Open", glyph: "䷹", bookChinese: "", bookName: ""}
-, {kanji: "渙"  , wikiChinese: "huàn", wikiName: "Dispersing", glyph: "䷺", bookChinese: "", bookName: ""}
-, {kanji: "節"  , wikiChinese: "jié", wikiName: "Articulating", glyph: "䷻", bookChinese: "", bookName: ""}
-, {kanji: "中孚", wikiChinese: "zhōng fú", wikiName: "Center Returning", glyph: "䷼", bookChinese: "", bookName: ""}
-, {kanji: "小過", wikiChinese: "xiǎo guò", wikiName: "Small Exceeding", glyph: "䷽", bookChinese: "", bookName: ""}
-, {kanji: "既濟", wikiChinese: "jì jì", wikiName: "Already Fording", glyph: "䷾", bookChinese: "", bookName: ""}
-, {kanji: "未濟", wikiChinese: "wèi jì", wikiName: "Not Yet Fording", glyph: "䷿", bookChinese: "", bookName: ""}
+, {kanji: "遯"  , wikiChinese: "dùn", wikiName: "Retiring", glyph: "䷠", bookChinese: "Tun", bookName: "Retreat"}
+, {kanji: "大壯", wikiChinese: "dà zhuàng", wikiName: "Great Invigorating", glyph: "䷡", bookChinese: "Ta Chuang", bookName: "The Power of the Great"}
+, {kanji: "晉"  , wikiChinese: "jìn", wikiName: "Prospering", glyph: "䷢", bookChinese: "Chin", bookName: "Progress"}
+, {kanji: "明夷", wikiChinese: "míng yí", wikiName: "Darkening of the Light", glyph: "䷣", bookChinese: "Ming i", bookName: "Darknening of the Light"}
+, {kanji: "家人", wikiChinese: "jiā rén", wikiName: "Dwelling People", glyph: "䷤", bookChinese: "Chia Jên", bookName: "The Family ( The Clan ) "}
+, {kanji: "睽"  , wikiChinese: "kuí", wikiName: "Polarising", glyph: "䷥", bookChinese: "K'uei", bookName: "Opposition"}
+, {kanji: "蹇"  , wikiChinese: "jiǎn", wikiName: "Limping", glyph: "䷦", bookChinese: "Chien", bookName: "Obstruction"}
+, {kanji: "解"  , wikiChinese: "xiè", wikiName: "Taking-Apart", glyph: "䷧", bookChinese: "Hsieh", bookName: "Deliverance"}
+, {kanji: "損"  , wikiChinese: "sǔn", wikiName: "Diminishing", glyph: "䷨", bookChinese: "Sun", bookName: "Decrease"}
+, {kanji: "益"  , wikiChinese: "yì", wikiName: "Augmenting", glyph: "䷩", bookChinese: "i", bookName: "Increase"}
+, {kanji: "夬"  , wikiChinese: "guài", wikiName: "Displacement", glyph: "䷪", bookChinese: "Kuai", bookName: "Breakthrough ( Resoluteness )"}
+, {kanji: "姤"  , wikiChinese: "gòu", wikiName: "Coupling", glyph: "䷫", bookChinese: "Kou", bookName: "Coming to Meet"}
+, {kanji: "萃"  , wikiChinese: "cuì", wikiName: "Clustering", glyph: "䷬", bookChinese: "Ts'ui", bookName: "Gathering Together"}
+, {kanji: "升"  , wikiChinese: "shēng", wikiName: "Ascending", glyph: "䷭", bookChinese: "Shêng", bookName: "Pushing Upward"}
+, {kanji: "困"  , wikiChinese: "kùn", wikiName: "Confining", glyph: "䷮", bookChinese: "K'un", bookName: "Oppression ( Exhaustion )"}
+, {kanji: "井"  , wikiChinese: "jǐng", wikiName: "Welling", glyph: "䷯", bookChinese: "Ching", bookName: "The Well"}
+, {kanji: "革"  , wikiChinese: "gé", wikiName: "Skinning", glyph: "䷰", bookChinese: "Ko", bookName: "Revolution"}
+, {kanji: "鼎"  , wikiChinese: "dǐng", wikiName: "Holding", glyph: "䷱", bookChinese: "Ting", bookName: "The Cauldron"}
+, {kanji: "震"  , wikiChinese: "zhèn", wikiName: "Shake", glyph: "䷲", bookChinese: "Chên", bookName: "The Arousing ( Shock )"}
+, {kanji: "艮"  , wikiChinese: "gèn", wikiName: "Bound", glyph: "䷳", bookChinese: "Kên", bookName: "Keeping Still, Mountain"}
+, {kanji: "漸"  , wikiChinese: "jiàn", wikiName: "Infiltrating", glyph: "䷴", bookChinese: "Chien", bookName: "Development ( Gradual Progress )"}
+, {kanji: "歸妹", wikiChinese: "guī mèi", wikiName: "Converting the Maiden", glyph: "䷵", bookChinese: "Kuei Mei", bookName: "The Marrying Maiden"}
+, {kanji: "豐"  , wikiChinese: "fēng", wikiName: "Abounding", glyph: "䷶", bookChinese: "Fêng", bookName: "Abundance ( Fullness )"}
+, {kanji: "旅"  , wikiChinese: "lǚ", wikiName: "Sojourning", glyph: "䷷", bookChinese: "Lü", bookName: "The Wanderer"}
+, {kanji: "巽"  , wikiChinese: "xùn", wikiName: "Ground", glyph: "䷸", bookChinese: "Sun", bookName: "The Gentle ( The Penetrating, Wind )"}
+, {kanji: "兌"  , wikiChinese: "duì", wikiName: "Open", glyph: "䷹", bookChinese: "Tui", bookName: "The Joyous, Lake"}
+, {kanji: "渙"  , wikiChinese: "huàn", wikiName: "Dispersing", glyph: "䷺", bookChinese: "Huan", bookName: "Dispersion ( Dissolution )"}
+, {kanji: "節"  , wikiChinese: "jié", wikiName: "Articulating", glyph: "䷻", bookChinese: "Chieh", bookName: "Limitation"}
+, {kanji: "中孚", wikiChinese: "zhōng fú", wikiName: "Center Returning", glyph: "䷼", bookChinese: "Chung Fu", bookName: "Inner Truth"}
+, {kanji: "小過", wikiChinese: "xiǎo guò", wikiName: "Small Exceeding", glyph: "䷽", bookChinese: "Hsiao Kuo", bookName: "Preponderance of the Small"}
+, {kanji: "既濟", wikiChinese: "jì jì", wikiName: "Already Fording", glyph: "䷾", bookChinese: "Chi chi", bookName: "After Completion"}
+, {kanji: "未濟", wikiChinese: "wèi jì", wikiName: "Not Yet Fording", glyph: "䷿", bookChinese: "Wei chi", bookName: "Before Completion"}
 ]
 
 export const model =
 {
   coins: new Array(NUMBER_OF_LINES).fill(new Array(NUMBER_OF_COINS).fill(0))
-//, lines: new Array(NUMBER_OF_LINES).fill(0)
-, lines: [6,9,6,9,6,9]
+, lines: new Array(NUMBER_OF_LINES).fill(0)
+//, lines: [6,9,6,9,6,9]
 , currentSelection: {
     r: NUMBER_OF_LINES - 1
   , c: 0
