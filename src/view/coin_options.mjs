@@ -41,7 +41,7 @@ export const Coin = props => {
 }
 
 export const CoinSelection = props => children =>
-  div({ class: 'ma3 pointer white tc flex flex-row sans-serif' })(
+  div({ class: 'ph2 pointer white tc flex flex-row sans-serif' })(
     [
       , Coin({...props, value: HEADS_VALUE})()
       , Coin({...props, value: TAILS_VALUE})()

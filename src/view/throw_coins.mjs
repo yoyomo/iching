@@ -10,7 +10,7 @@ export const ThrowCoins = dispatch => {
   };
 
   return model =>
-    div({class: 'flex flex-row justify-center'})(
+    div({class: 'flex flex-row justify-center flex-wrap'})(
       times(3).map( i =>
         CoinSelection({
           onChoice: value => dispatcher.chooseCurrentRowCoinSide(i, value)

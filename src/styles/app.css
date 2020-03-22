@@ -1,7 +1,4 @@
-.bg-heads {
-  background-color: #cc5e11
-}
+.vw-100 { width: 100vw; }
 
-.bg-tails {
-  background-color: #406ca5
-}
+.bg-heads { background-color: #cc5e11 }
+.bg-tails { background-color: #406ca5 }

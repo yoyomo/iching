@@ -2,11 +2,15 @@ import { div, span } from "muvjs/muv-dom";
 import { LINE_NUMBERS } from "./line_numbers.mjs";
 import { NUMBER_OF_LINES, trigrams, hexagramLookUp, hexagrams } from '../model/model.mjs';
 
-export const OpenLine = props => children => div()("＿＿＿　＿＿＿");
-export const ClosedLine = props => children => div()("＿＿＿＿＿＿＿");
-export const GrayedLine = props => children => div({ class: 'o-20' })("＿＿＿＿＿＿＿");
-export const ChangingArrow = props => children => div()(props.index + 'ー＞');
-export const NonChangingArrow = props => children => div({ class: 'o-0' })(props.index + 'ー＞');
+export const OpenLine = props => children => div({class: 'h1 flex flex-row'})([
+  , span({class: 'h-100 bb w-40'})()
+  , span({class: 'h-100 w-20'})()
+  , span({class: 'h-100 bb w-40'})()
+]);
+export const ClosedLine = props => children => div({class: 'bb h1'})();
+export const GrayedLine = props => children => div({ class: 'o-20 bb h1' })();
+export const ChangingArrow = props => children => div()(props.index + '→');
+export const NonChangingArrow = props => children => div({ class: 'o-0' })(props.index + '→');
 
 export const Line = props => children => {
   if (props.lineValue === 0) {
@@ -36,26 +40,25 @@ export const Result = props => children => {
 }
 export const Elements = props => children => {
 
-  return div({class: 'tc flex flex-column mr2 mt1'})([
-    , div({class: 'mb2'})([
+  return div({class: `tc flex flex-column ${props.isFirst ? 'pr2' : 'pl2'}  pt1`})([
+    , div({class: 'pb2'})([
       , div({class: 'o-0'})('____')
       , div({class: `${props.upperTrigram ? '' : 'o-0'}`})(props.upperTrigram ? props.upperTrigram.element : '___')
       , div({class: 'o-0'})('____')
     ])
-    , div({class: 'mb2'})([
+    , div({class: 'pb2'})([
       , div({class: 'o-0'})('____')
       , div({class: `${props.lowerTrigram ? '' : 'o-0'}`})(props.lowerTrigram ? props.lowerTrigram.element : '___')
       , div({class: 'o-0'})('____')
     ])
-    , div({class: 'o-0'})('___')
   ])
 }
 
 export const AllLines = props => children => {
 
-  return div()([
-    , div({class: 'mb2'})(props.upperLines.map(lineValue => Line({lineValue})()))
-    , div({class: 'mb2'})(props.lowerLines.map(lineValue => Line({lineValue})()))
+  return div({class: 'w3'})([
+    , div({class: 'pb2'})(props.upperLines.map(lineValue => Line({lineValue})()))
+    , div({class: 'pb2'})(props.lowerLines.map(lineValue => Line({lineValue})()))
   ])
 }
 
@@ -150,7 +153,8 @@ export const FirstHexagram = dispatch => model => {
   return div({class: 'flex flex-column'})([
     ,div({class: 'flex flex-row tc justify-center'})([
       , Elements({
-        upperTrigram: hexagram.upperTrigram
+        isFirst: true
+        , upperTrigram: hexagram.upperTrigram
         , lowerTrigram: hexagram.lowerTrigram})()
       , AllLines({
         upperLines: hexagram.upperLines
@@ -189,8 +193,8 @@ export const ChangingLines = dispatch => model => {
   const changedLines = changeLinesOfHexagram(model.lines);
   const hexagram = calculateHexagram(changedLines);
 
-  return div({ class: `ml3 mr3 mt1 ${isReadingComplete(changedLines, model.lines) ? '' : 'o-20'}`})([
-    , div({class: 'mb2'})(hexagram.upperLines.map((lineValue, i) => ChangingOrNonChangingLine({lineValue,i})()))
+  return div({ class: `ph3 ${isReadingComplete(changedLines, model.lines) ? '' : 'o-20'}`})([
+    , div({class: 'pb2'})(hexagram.upperLines.map((lineValue, i) => ChangingOrNonChangingLine({lineValue,i})()))
     , div()(hexagram.lowerLines.map((lineValue, i) => ChangingOrNonChangingLine({lineValue, i: i + 3})()))
   ])
 }

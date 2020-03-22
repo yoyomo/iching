@@ -19,8 +19,8 @@ export const view = dispatch => {
         , i({src: 'img/circle_i_ching.png', class: 'absolute w1 h1 o-70'})()
         , div({class: 'vh-100 db'})([
           , div({class: 'w-100 tc tracked sans-serif'})([
-            , h1({class: 'f1'})('I-CHING')
-            , h2()('The Book of Changes')
+            , div({class: 'f1 b pt4 pb3'})('I-CHING')
+            , div({class: 'f3 b pb4'})('The Book of Changes')
             , div({class: 'serif f5 o-70'})([
               , div()('Iching only requires you to roll 3 coins, 6 times.')
               , div()([
@@ -45,13 +45,13 @@ export const view = dispatch => {
           ])
           : null
         ])
-        , div({class: 'h-100 db'})([
-          , div()('Edit coins')
-          , div({ class: 'flex flex-row'})([
-            , AllCoinOptionsContent(model)
-            , LineNumbersContent(model)
-          ])
-        ])
+//        , div({class: 'h-100 db'})([
+//          , div()('Edit coins')
+//          , div({ class: 'flex flex-row'})([
+//            , AllCoinOptionsContent(model)
+//            , LineNumbersContent(model)
+//          ])
+//        ])
       ]
     )
 
