@@ -22,6 +22,13 @@ export const chooseCurrentCoinSide = value => {
   }
 };
 
+export const chooseCurrentCoinTotal = value => {
+  return {
+    type: "choose-current-coin-total",
+    value
+  }
+}
+
 export const chooseCurrentRowCoinSide = (c, value) => {
   return {
     type: 'choose-current-row-coin-side',

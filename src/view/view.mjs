@@ -36,7 +36,11 @@ export const view = dispatch => {
             , SecondHexagramContent(model)
           ])
           , div({class: 'flex flex-column ma3'})([
-            , div({class: 'serif f5 o-70 tc'})('Throw physical coins. Then click; or press h or 3 for heads, and t or 2 for tails')
+            , div({class: 'serif f5 o-70 tc'})([
+              , div()('Throw physical coins. Then click according to (h)eads and (t)ails,')
+              , div({class: '0-90 f6'})('type h or 3 for heads, and t or 2 for tails or,')
+              , div({class: 'o-90 f6'})('type 6, 7, 8, or 9 for each line')
+            ])
             , ThrowCoinsContent(model)
           ])
         ])

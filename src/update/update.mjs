@@ -25,11 +25,26 @@ export const update = model => action => {
       model = updateCoinValues(model, model.currentSelection.r, action.c, action.value);
       break;
 
+    case 'choose-current-coin-total':
+      
+      if(model.currentSelection < 0) break;
+
+      model = {...model};
+      model.lines = model.lines.slice();
+      model.lines[model.currentSelection.r] = action.value;
+
+      model.currentSelection = {...model.currentSelection};
+      model.currentSelection.r--;
+      break;     
+
   }
   return { model, effects };
 };
 
 const updateCoinValues = (model, r, c, value) => {
+
+  if(model.currentSelection.r < 0) return model;
+
   model = { ...model };
   model.coins = model.coins.slice();
   model.coins[r] = model.coins[r].slice();
@@ -44,9 +59,8 @@ const updateCoinValues = (model, r, c, value) => {
 
   model.currentSelection = {...model.currentSelection};
   model.currentSelection.c = (c + 1) % NUMBER_OF_COINS;
-  if (model.currentSelection.c === 0) {
+  if(model.lines[r]){
     model.currentSelection.r = r - 1;
-    if (model.currentSelection.r < 0) model.currentSelection.r = NUMBER_OF_LINES - 1;
   }
 
   return model;

@@ -14,7 +14,7 @@ export const ThrowCoins = dispatch => {
       times(3).map( i =>
         CoinSelection({
           onChoice: value => dispatcher.chooseCurrentRowCoinSide(i, value)
-          , cell: model.coins[model.currentSelection.r][i]
+          , cell: model.currentSelection.r >= 0 && model.coins[model.currentSelection.r][i]
         })()
       )
     )

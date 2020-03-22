@@ -1,4 +1,4 @@
-import {chooseCurrentCoinSide} from '../update/actions.mjs'
+import {chooseCurrentCoinSide, chooseCurrentCoinTotal} from '../update/actions.mjs'
 import {HEADS_VALUE, TAILS_VALUE } from '../update/update.mjs';
 
 export const subscriptions = dispatch => {
@@ -8,6 +8,9 @@ export const subscriptions = dispatch => {
       dispatch(chooseCurrentCoinSide(HEADS_VALUE));
     } else if (e.key === 't' || e.key === ''+TAILS_VALUE) {
       dispatch(chooseCurrentCoinSide(TAILS_VALUE));
+    } 
+    else if(e.key === '6' || e.key === '7' || e.key === '8' || e.key === '9') {
+      dispatch(chooseCurrentCoinTotal(parseInt(e.key)))
     }
   })
 
