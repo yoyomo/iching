@@ -1,4 +1,4 @@
-import { div, button, h1, h2, h3, h5, a, span } from 'muvjs/muv-dom';
+import { div, button, h1, h2, h3, h5, a, span, i } from 'muvjs/muv-dom';
 import { AllCoinOptions } from './coin_options.mjs'
 import { LineNumbers } from './line_numbers.mjs'
 import { FirstHexagram, SecondHexagram, ChangingLines } from './hexagrams.mjs'
@@ -16,6 +16,7 @@ export const view = dispatch => {
   return model =>
     div()(
       [
+        , i({src: 'img/circle_i_ching.png', class: 'absolute w1 h1 o-70'})()
         , div({class: 'vh-100 flex flex-column'})([
           , div({class: 'w-100 ma3 tc tracked sans-serif'})([
             , h1({class: 'f1'})('I-CHING')

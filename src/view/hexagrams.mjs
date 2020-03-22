@@ -51,7 +51,7 @@ export const FirstHexagram = dispatch => model => {
   const pageNumber = n * 2 + 3;
 
   return div({class: 'flex flex-row'})([
-    , div({class: 'tc justify-center flex flex-column mr2 mt1'})([
+    , div({class: 'tc flex flex-column mr2 mt1'})([
       , div({class: 'mb2'})([
         , div({class: 'o-0'})('____')
         , div({class: `${upperTrigram ? '' : 'o-0'}`})(upperTrigram ? upperTrigram.element : '___')
@@ -139,7 +139,7 @@ export const SecondHexagram = dispatch => model => {
         , div()(hexagrams[n-1].name)
       ])
     ])
-    , div({class: 'tc justify-center flex flex-column ml2 mt1'})([
+    , div({class: 'tc flex flex-column ml2 mt1'})([
       , div({class: 'mb2'})([
         , div({class: 'o-0'})('____')
         , div({class: `${upperTrigram ? '' : 'o-0'}`})(upperTrigram ? upperTrigram.element : '___')
