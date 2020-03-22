@@ -100,6 +100,7 @@ export const model =
 , currentSelection: {
     r: NUMBER_OF_LINES - 1
   , c: 0 
-  }
-, isEditingCoins: false
+}  
+,  isEditingCoins: false
+, isShowingRules: true
 };

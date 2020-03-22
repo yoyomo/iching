@@ -37,8 +37,11 @@ export const chooseCurrentRowCoinSide = (c, value) => {
   }
 }
 
-export const toggleEditingCoins = on => {
+export const toggle = (attr, on) => {
   return {
-    type: 'toggle-editing-coins'
+    type: 'toggle',
+    attr,
+    on
   }
 }
+

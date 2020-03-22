@@ -115,7 +115,7 @@ export const changeLinesOfHexagram = lines => {
 export const HumanReadableChangingLines = props => children => {
 
   if(!props.changedLines) return div()();
-  return div({class: 'f6 mt3 sans-serif flex flex-column tc'})(
+  return div({class: 'f6 mv3 sans-serif flex flex-column tc'})(
     props.changedLines.map(changedLine => {
       let lineString = ' line';
       switch(changedLine){

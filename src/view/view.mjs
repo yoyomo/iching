@@ -23,7 +23,7 @@ export const view = dispatch => {
           , div({class: 'w-100 tc tracked sans-serif'})([
             , div({class: 'f1 b pt4 pb3'})('I-CHING')
             , div({class: 'f3 b pb4'})('The Book of Changes')
-            , div({class: 'serif f5 o-70'})([
+            , model.isShowingRules ? div({class: 'serif f5 o-70'})([
               , div()('Iching only requires you to roll 3 coins, 6 times.')
               , div()([
                 , span()('And have an ')
@@ -31,19 +31,21 @@ export const view = dispatch => {
                 , span()(' ready.')
               ])
             ])
+            : null
           ])
-          , div({ class: 'flex flex-row w-100 justify-center'})([
+          , div({ class: 'flex flex-row w-100 justify-center pt1'})([
             , FirstHexagramContent(model)
             , ChangingLinesContent(model)
             , SecondHexagramContent(model)
           ])
           , !isReadingComplete(model.lines) ? div({class: 'flex flex-column'})([
             , ThrowCoinsContent(model)
-            , div({class: 'serif f5 o-70 tc'})([
+            , model.isShowingRules ? div({class: 'serif f5 o-70 tc'})([
               , div()('Throw physical coins. Then click according to (h)eads and (t)ails,')
               , div({class: '0-90 f6'})('type h or 3 for heads, and t or 2 for tails or,')
               , div({class: 'o-90 f6'})('type 6, 7, 8, or 9 for each line')
             ])
+            : null
           ])
           : null
         ])
