@@ -37,6 +37,10 @@ export const update = model => action => {
       model.currentSelection.r--;
       break;     
 
+    case 'toggle-editing-coins':
+      model = {...model};
+      model.isEditingCoins = action.on === undefined || action.on === null ? !model.isEditingCoins : action.on;
+      break;
   }
   return { model, effects };
 };

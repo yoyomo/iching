@@ -2,3 +2,10 @@
 
 .bg-heads { background-color: #cc5e11 }
 .bg-tails { background-color: #406ca5 }
+
+.bg-tool-button { background-color: #ddd }
+
+.bb-none { border-bottom: none }
+.bl-none { border-left: none }
+.br-none { border-right: none }
+.bt-none { border-top: none }

@@ -3,6 +3,7 @@ import { AllCoinOptions } from './coin_options.mjs'
 import { LineNumbers } from './line_numbers.mjs'
 import { FirstHexagram, SecondHexagram, ChangingLines, isReadingComplete } from './hexagrams.mjs'
 import { ThrowCoins } from './throw_coins.mjs';
+import { EditCoins } from './edit_coins.mjs';
 
 export const view = dispatch => {
 
@@ -12,12 +13,13 @@ export const view = dispatch => {
   const SecondHexagramContent = SecondHexagram(dispatch);
   const ChangingLinesContent = ChangingLines(dispatch);
   const ThrowCoinsContent = ThrowCoins(dispatch);
+  const EditCoinsContent = EditCoins(dispatch);
 
   return model =>
     div()(
       [
         , i({src: 'img/circle_i_ching.png', class: 'absolute w1 h1 o-70'})()
-        , div({class: 'vh-100 db'})([
+        , div({class: 'min-vh-100 db'})([
           , div({class: 'w-100 tc tracked sans-serif'})([
             , div({class: 'f1 b pt4 pb3'})('I-CHING')
             , div({class: 'f3 b pb4'})('The Book of Changes')
@@ -45,14 +47,7 @@ export const view = dispatch => {
           ])
           : null
         ])
-//        , div({class: 'h-100 db'})([
-//          , div()('Edit coins')
-//          , div({ class: 'flex flex-row'})([
-//            , AllCoinOptionsContent(model)
-//            , LineNumbersContent(model)
-//          ])
-//        ])
-      ]
-    )
+        , EditCoinsContent(model)
+      ])
 
 };

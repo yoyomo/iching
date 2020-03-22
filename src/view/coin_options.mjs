@@ -10,15 +10,17 @@ export const AllCoinOptions = dispatch => {
   return model =>
     div({ class: 'flex flex-column' })
       (model.coins.map((row, r) =>
-        div({ class: 'flex flex-row' })(
-          [div({ class: 'ma3' })(`${LINE_NUMBERS - r}:`)].concat(row.map((cell, c) =>
+        div({ class: 'flex flex-column bb bt b--light-gray pv2' })([
+          , div({ class: 'ma3' })(`${LINE_NUMBERS - r}:`)
+          , div({class: 'flex flex-row flex-wrap tc justify-center'})(
+            row.map((cell, c) =>
             CoinSelection({
               onChoice: (value) => dispatcher.chooseCoinSides(r, c, value)
               , cell: cell
             }
             )()
           ))
-        )
+        ])
       ))
 }
 
