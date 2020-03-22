@@ -1,7 +1,7 @@
 import { div, button, h1, h2, h3, h5, a, span, i } from 'muvjs/muv-dom';
 import { AllCoinOptions } from './coin_options.mjs'
 import { LineNumbers } from './line_numbers.mjs'
-import { FirstHexagram, SecondHexagram, ChangingLines } from './hexagrams.mjs'
+import { FirstHexagram, SecondHexagram, ChangingLines, isReadingComplete } from './hexagrams.mjs'
 import { ThrowCoins } from './throw_coins.mjs';
 
 export const view = dispatch => {
@@ -18,7 +18,7 @@ export const view = dispatch => {
       [
         , i({src: 'img/circle_i_ching.png', class: 'absolute w1 h1 o-70'})()
         , div({class: 'vh-100 db'})([
-          , div({class: 'w-100 ma3 tc tracked sans-serif'})([
+          , div({class: 'w-100 tc tracked sans-serif'})([
             , h1({class: 'f1'})('I-CHING')
             , h2()('The Book of Changes')
             , div({class: 'serif f5 o-70'})([
@@ -30,21 +30,22 @@ export const view = dispatch => {
               ])
             ])
           ])
-          , div({ class: 'flex flex-row ma3 w-100 justify-center'})([
+          , div({ class: 'flex flex-row w-100 justify-center'})([
             , FirstHexagramContent(model)
             , ChangingLinesContent(model)
             , SecondHexagramContent(model)
           ])
-          , div({class: 'flex flex-column ma3'})([
+          , !isReadingComplete(model.lines) ? div({class: 'flex flex-column'})([
+            , ThrowCoinsContent(model)
             , div({class: 'serif f5 o-70 tc'})([
               , div()('Throw physical coins. Then click according to (h)eads and (t)ails,')
               , div({class: '0-90 f6'})('type h or 3 for heads, and t or 2 for tails or,')
               , div({class: 'o-90 f6'})('type 6, 7, 8, or 9 for each line')
             ])
-            , ThrowCoinsContent(model)
           ])
+          : null
         ])
-        , div({class: 'db'})([
+        , div({class: 'h-100 db'})([
           , div()('Edit coins')
           , div({ class: 'flex flex-row'})([
             , AllCoinOptionsContent(model)

@@ -96,6 +96,7 @@ export const model =
 , lines: new Array(NUMBER_OF_LINES).fill(0)
 //, lines: [6,9,6,9,6,9]
 //, lines: [7,8,7,8,7,8]
+//, lines: [7,6,9,8,7,6]
 , currentSelection: {
     r: NUMBER_OF_LINES - 1
   , c: 0

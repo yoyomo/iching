@@ -18,20 +18,21 @@ export const Line = props => children => {
   }
 }
 export const Result = props => children => {
-
-    return props.hexagram && div({class: 'f1 sans-serif tc'})([
-      , div()(props.hexagram.glyph)
-      , div({class: 'mv3'})(props.hexagram.kanji)
-      , div({class: 'f5 b'})([
-        , span()(props.hexagram.bookChinese), 
-        , span()(' / ')
-        , span()(props.hexagram.bookName)
-      ])
-      , div({class: 'flex flex-row tc justify-center f6 mt2'})([
-        , div({class: 'mr2'})(props.number ? `#${props.number}` : '')
-        , div({class: 'o-70'})(props.pageNumber ? `p.(${props.pageNumber})` : '')
-      ])
+  if(!props.hexagram) return div()();
+  return div({class: 'f1 sans-serif tc'})([
+    , div()(props.hexagram.glyph)
+    , div({class: 'mv3'})(props.hexagram.kanji)
+    , div({class: 'f5 b'})([
+      , span()(props.hexagram.bookChinese), 
+      , span()(' / ')
+      , span()(props.hexagram.bookName)
     ])
+    , div({class: 'flex flex-row tc justify-center f6 mt2'})([
+      , div({class: 'mr2'})(props.number ? `#${props.number}` : '')
+      , div({class: 'o-70'})(props.pageNumber ? `p.(${props.pageNumber})` : '')
+    ])
+    , HumanReadableChangingLines({changedLines: props.changedLines})()
+  ])
 }
 export const Elements = props => children => {
 
@@ -58,7 +59,7 @@ export const AllLines = props => children => {
   ])
 }
 
-export const calculateHexagram = (lines, otherLines) => {
+export const calculateHexagram = lines => {
 
   const lowerLines = lines.slice(3,6);
   const lowerLinesSymbol = lowerLines.filter(l=>l).map(l => l % 2).join('');
@@ -90,10 +91,11 @@ export const calculateHexagram = (lines, otherLines) => {
   const n = hexagramLookUp[lowerTrigramIndex] && hexagramLookUp[lowerTrigramIndex][upperTrigramIndex];
   const pageNumber = n * 2 + 3;
 
-  const isReadingComplete = lines.filter(l=>l).length === NUMBER_OF_LINES && JSON.stringify(lines) !== JSON.stringify(otherLines);
 
-  return {isReadingComplete, n, pageNumber, upperLines, upperTrigram, lowerLines, lowerTrigram}
+  return {n, pageNumber, upperLines, upperTrigram, lowerLines, lowerTrigram}
 }
+
+export const isReadingComplete = (lines, otherLines) => lines.filter(l=>l).length === NUMBER_OF_LINES && JSON.stringify(lines) !== JSON.stringify(otherLines);
 
 export const changeLinesOfHexagram = lines => {
 
@@ -107,29 +109,64 @@ export const changeLinesOfHexagram = lines => {
   })
 }
 
+export const HumanReadableChangingLines = props => children => {
+
+  if(!props.changedLines) return div()();
+  return div({class: 'f6 mt3 sans-serif flex flex-column tc'})(
+    props.changedLines.map(changedLine => {
+      let lineString = ' line';
+      switch(changedLine){
+        case 1:
+          lineString = 'First' + lineString;
+          break;
+        case 2:
+          lineString = 'Second' + lineString;
+          break;
+        case 3:
+          lineString = 'Third' + lineString;
+          break;
+        case 4:
+          lineString = 'Fourth' + lineString;
+          break;
+        case 5:
+          lineString = 'Fifth' + lineString;
+          break;
+        case 6:
+          lineString = 'Sixth' + lineString;
+          break;
+      }
+
+      return div({class: 'mt1'})(lineString) 
+    })
+  )
+}
+
 export const FirstHexagram = dispatch => model => {
 
   const hexagram = calculateHexagram(model.lines);
 
+  const changedLines = model.lines.slice().reverse().map((lineValue, i) => lineValue === 6 || lineValue === 9 ? i + 1 : -1).filter(l=> l>=0 );
+
   return div({class: 'flex flex-column'})([
     ,div({class: 'flex flex-row tc justify-center'})([
       , Elements({
-          upperTrigram: hexagram.upperTrigram
+        upperTrigram: hexagram.upperTrigram
         , lowerTrigram: hexagram.lowerTrigram})()
       , AllLines({
-          upperLines: hexagram.upperLines
+        upperLines: hexagram.upperLines
         , lowerLines: hexagram.lowerLines
       })()
     ])
-    , Result({hexagram: hexagrams[hexagram.n-1], number: hexagram.n, pageNumber: hexagram.pageNumber})()
+    , Result({hexagram: hexagrams[hexagram.n-1], number: hexagram.n, pageNumber: hexagram.pageNumber, changedLines})()
   ])
 }
 
 export const SecondHexagram = dispatch => model => {
 
-  const hexagram = calculateHexagram(changeLinesOfHexagram(model.lines), model.lines);
+  const changedLines = changeLinesOfHexagram(model.lines);
+  const hexagram = calculateHexagram(changedLines);
 
-  return div({class: `flex flex-column ${hexagram.isReadingComplete ? '' : 'o-20'}`})([
+  return div({class: `flex flex-column ${isReadingComplete(changedLines, model.lines) ? '' : 'o-20'}`})([
     , div({class: 'flex flex-row tc justify-center'})([
       , AllLines({upperLines: hexagram.upperLines, lowerLines: hexagram.lowerLines})()
       , Elements({upperTrigram: hexagram.upperTrigram, lowerTrigram: hexagram.lowerTrigram})()
@@ -149,9 +186,10 @@ export const ChangingOrNonChangingLine = props => children => {
 
 export const ChangingLines = dispatch => model => {
 
-  const hexagram = calculateHexagram(changeLinesOfHexagram(model.lines), model.lines);
+  const changedLines = changeLinesOfHexagram(model.lines);
+  const hexagram = calculateHexagram(changedLines);
 
-  return div({ class: `ml3 mr3 mt1 ${hexagram.isReadingComplete ? '' : 'o-20'}`})([
+  return div({ class: `ml3 mr3 mt1 ${isReadingComplete(changedLines, model.lines) ? '' : 'o-20'}`})([
     , div({class: 'mb2'})(hexagram.upperLines.map((lineValue, i) => ChangingOrNonChangingLine({lineValue,i})()))
     , div()(hexagram.lowerLines.map((lineValue, i) => ChangingOrNonChangingLine({lineValue, i: i + 3})()))
   ])
