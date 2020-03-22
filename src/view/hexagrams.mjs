@@ -95,6 +95,18 @@ export const calculateHexagram = (lines, otherLines) => {
   return {isReadingComplete, n, pageNumber, upperLines, upperTrigram, lowerLines, lowerTrigram}
 }
 
+export const changeLinesOfHexagram = lines => {
+
+  return lines.map(line => {
+    if(line === 6){
+      line = 9;
+    } else if(line === 9) {
+      line = 6;
+    }
+    return line;
+  })
+}
+
 export const FirstHexagram = dispatch => model => {
 
   const hexagram = calculateHexagram(model.lines);
@@ -111,18 +123,6 @@ export const FirstHexagram = dispatch => model => {
     ])
     , Result({hexagram: hexagrams[hexagram.n-1], number: hexagram.n, pageNumber: hexagram.pageNumber})()
   ])
-}
-
-export const changeLinesOfHexagram = lines => {
-
-  return lines.map(line => {
-    if(line === 6){
-      line = 9;
-    } else if(line === 9) {
-      line = 6;
-    }
-    return line;
-  })
 }
 
 export const SecondHexagram = dispatch => model => {
