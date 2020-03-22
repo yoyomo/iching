@@ -76,9 +76,9 @@ export const AllLines = props => children => {
   ])
 }
 
-export const calculateHexagram = originalLines => {
+export const calculateHexagram = (lines, otherLines) => {
 
-  const lowerLines = originalLines.slice(3,6);
+  const lowerLines = lines.slice(3,6);
   const lowerLinesSymbol = lowerLines.filter(l=>l).map(l => l % 2).join('');
   let lowerTrigramIndex = -1;
   let lowerTrigram
@@ -91,7 +91,7 @@ export const calculateHexagram = originalLines => {
     }
   };
 
-  const upperLines = originalLines.slice(0,3);
+  const upperLines = lines.slice(0,3);
   const upperLinesSymbol = upperLines.filter(l=>l).map(l => l % 2).join('');
   let upperTrigramIndex = -1;
   let upperTrigram
@@ -108,14 +108,14 @@ export const calculateHexagram = originalLines => {
   const n = hexagramLookUp[lowerTrigramIndex] && hexagramLookUp[lowerTrigramIndex][upperTrigramIndex];
   const pageNumber = n * 2 + 3;
 
-  const isReadingComplete = originalLines.filter(l=>l).length === NUMBER_OF_LINES;
+  const isReadingComplete = lines.filter(l=>l).length === NUMBER_OF_LINES && JSON.stringify(lines) !== JSON.stringify(otherLines);
 
   return {isReadingComplete, n, pageNumber, upperLines, upperTrigram, lowerLines, lowerTrigram}
 }
 
-export const SecondHexagram = dispatch => model => {
+export const changeLinesOfHexagram = lines => {
 
-  const changedLines = model.lines.map(line => {
+  return lines.map(line => {
     if(line === 6){
       line = 9;
     } else if(line === 9) {
@@ -123,9 +123,11 @@ export const SecondHexagram = dispatch => model => {
     }
     return line;
   })
+}
 
-  const hexagram = calculateHexagram(changedLines);
+export const SecondHexagram = dispatch => model => {
 
+  const hexagram = calculateHexagram(changeLinesOfHexagram(model.lines), model.lines);
 
   return div({class: `flex flex-column ${hexagram.isReadingComplete ? '' : 'o-20'}`})([
     , div({class: 'flex flex-row tc justify-center'})([
@@ -147,13 +149,10 @@ export const ChangingOrNonChangingLine = props => children => {
 
 export const ChangingLines = dispatch => model => {
 
-  const lowerLines = model.lines.slice(3,6);
-  const upperLines = model.lines.slice(0,3);
+  const hexagram = calculateHexagram(changeLinesOfHexagram(model.lines), model.lines);
 
-  const isReadingComplete = model.lines.filter(l=>l).length === NUMBER_OF_LINES;
-
-  return div({ class: `ml3 mr3 mt1 ${isReadingComplete ? '' : 'o-20'}`})([
-    , div({class: 'mb2'})(upperLines.map((lineValue, i) => ChangingOrNonChangingLine({lineValue,i})()))
-    , div()(lowerLines.map((lineValue, i) => ChangingOrNonChangingLine({lineValue, i: i + 3})()))
+  return div({ class: `ml3 mr3 mt1 ${hexagram.isReadingComplete ? '' : 'o-20'}`})([
+    , div({class: 'mb2'})(hexagram.upperLines.map((lineValue, i) => ChangingOrNonChangingLine({lineValue,i})()))
+    , div()(hexagram.lowerLines.map((lineValue, i) => ChangingOrNonChangingLine({lineValue, i: i + 3})()))
   ])
 }
