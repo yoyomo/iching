@@ -33,7 +33,7 @@ export const Coin = props => {
 
   return children =>
     div({ 
-      class: `h3 w3 br4 ma2 flex flex-column tc justify-center
+      class: `h3 w3 br4 ma2 flex flex-column tc justify-center shadow-3
         ${isSelected ? 'bw2 b--solid b--yellow' :''} 
         ${isHeads ? 'bg-heads' : 'bg-tails'}`,
       onclick: () => props.onChoice(props.value) })
