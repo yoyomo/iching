@@ -8,7 +8,7 @@ export const GrayedLine = props => children => div({ class: 'o-20' })("＿＿＿
 export const ChangingArrow = props => children => div()(props.index + 'ー＞');
 export const NonChangingArrow = props => children => div({ class: 'o-0' })(props.index + 'ー＞');
 
-const Line = props => children => {
+export const Line = props => children => {
   if (props.lineValue === 0) {
     return GrayedLine()();
   } else if (props.lineValue % 2 === 0) {
@@ -47,24 +47,6 @@ export const Elements = props => children => {
       , div({class: 'o-0'})('____')
     ])
     , div({class: 'o-0'})('___')
-  ])
-}
-
-export const FirstHexagram = dispatch => model => {
-
-  const hexagram = calculateHexagram(model.lines);
-
-  return div({class: 'flex flex-column'})([
-    ,div({class: 'flex flex-row tc justify-center'})([
-      , Elements({
-          upperTrigram: hexagram.upperTrigram
-        , lowerTrigram: hexagram.lowerTrigram})()
-      , AllLines({
-          upperLines: hexagram.upperLines
-        , lowerLines: hexagram.lowerLines
-      })()
-    ])
-    , Result({hexagram: hexagrams[hexagram.n-1], number: hexagram.n, pageNumber: hexagram.pageNumber})()
   ])
 }
 
@@ -111,6 +93,24 @@ export const calculateHexagram = (lines, otherLines) => {
   const isReadingComplete = lines.filter(l=>l).length === NUMBER_OF_LINES && JSON.stringify(lines) !== JSON.stringify(otherLines);
 
   return {isReadingComplete, n, pageNumber, upperLines, upperTrigram, lowerLines, lowerTrigram}
+}
+
+export const FirstHexagram = dispatch => model => {
+
+  const hexagram = calculateHexagram(model.lines);
+
+  return div({class: 'flex flex-column'})([
+    ,div({class: 'flex flex-row tc justify-center'})([
+      , Elements({
+          upperTrigram: hexagram.upperTrigram
+        , lowerTrigram: hexagram.lowerTrigram})()
+      , AllLines({
+          upperLines: hexagram.upperLines
+        , lowerLines: hexagram.lowerLines
+      })()
+    ])
+    , Result({hexagram: hexagrams[hexagram.n-1], number: hexagram.n, pageNumber: hexagram.pageNumber})()
+  ])
 }
 
 export const changeLinesOfHexagram = lines => {
