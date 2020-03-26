@@ -1,4 +1,5 @@
 import {NUMBER_OF_LINES, NUMBER_OF_COINS} from '../model/model.mjs';
+import {reloadPage} from '../subscriptions/effects.mjs';
 
 export const HEADS_VALUE = 3;
 export const TAILS_VALUE = 2;
@@ -39,7 +40,12 @@ export const update = model => action => {
 
     case 'toggle':
       model = {...model};
-      model[action.attr] = action.on === undefined || action.on === null ? !model[action.attr] : action.on;
+      model.toggles = {...model.toggles};
+      model.toggles[action.attr] = action.on === undefined || action.on === null ? !model.toggles[action.attr] : action.on;
+      break;
+
+    case 'reset':
+      effects = effects.concat(reloadPage())
       break;
   }
   return { model, effects };

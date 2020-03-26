@@ -22,7 +22,7 @@ export const Line = props => children => {
   }
 }
 export const Result = props => children => {
-  if(!props.hexagram) return div()();
+  if(!props.hexagram) return null;
   return div({class: 'f1 sans-serif tc'})([
     , div()(props.hexagram.glyph)
     , div({class: 'mv3'})(props.hexagram.kanji)
@@ -93,7 +93,6 @@ export const calculateHexagram = lines => {
 
   const n = hexagramLookUp[lowerTrigramIndex] && hexagramLookUp[lowerTrigramIndex][upperTrigramIndex];
   const pageNumber = n * 2 + 3;
-
 
   return {n, pageNumber, upperLines, upperTrigram, lowerLines, lowerTrigram}
 }

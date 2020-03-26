@@ -29,6 +29,10 @@ export const subscriptions = dispatch => {
 
         xhr.send({});
         break;
+
+      case 'reload-page':
+        location.reload();
+        break;
     }
   }
 

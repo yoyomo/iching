@@ -101,6 +101,8 @@ export const model =
     r: NUMBER_OF_LINES - 1
   , c: 0 
 }  
-,  isEditingCoins: false
-, isShowingRules: true
+, toggles: {
+    isEditingCoins: false
+  , isShowingRules: true
+  }
 };

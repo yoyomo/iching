@@ -45,3 +45,8 @@ export const toggle = (attr, on) => {
   }
 }
 
+export const reset = () => {
+  return {
+    type: 'reset'
+  }
+}

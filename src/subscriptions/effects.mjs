@@ -4,3 +4,8 @@ export const makeRequest = () => {
   }
 };
 
+export const reloadPage = () => {
+  return {
+    type: 'reload-page'
+  }
+};
