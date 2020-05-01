@@ -1,9 +1,10 @@
-import { div, button, h1, h2, h3, h5, a, span, i } from 'muvjs/muv-dom';
+import { div, button, h1, h2, h3, h5, a, span, img } from 'muvjs/muv-dom';
 import { AllCoinOptions } from './coin_options.mjs'
 import { LineNumbers } from './line_numbers.mjs'
 import { FirstHexagram, SecondHexagram, ChangingLines, isReadingComplete } from './hexagrams.mjs'
 import { ThrowCoins } from './throw_coins.mjs';
 import { EditCoins } from './edit_coins.mjs';
+import {Sidebar} from './sidebar.mjs';
 
 export const view = dispatch => {
 
@@ -14,11 +15,12 @@ export const view = dispatch => {
   const ChangingLinesContent = ChangingLines(dispatch);
   const ThrowCoinsContent = ThrowCoins(dispatch);
   const EditCoinsContent = EditCoins(dispatch);
+  const SidebarContent = Sidebar(dispatch);
 
   return model =>
     div()(
       [
-        , i({src: 'img/circle_i_ching.png', class: 'absolute w1 h1 o-70'})()
+        , SidebarContent(model)
         , div({class: 'min-vh-100 db'})([
           , div({class: 'w-100 tc tracked sans-serif'})([
             , div({class: 'f1 b pt4 pb3'})('I-CHING')

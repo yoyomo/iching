@@ -104,5 +104,6 @@ export const model =
 , toggles: {
     isEditingCoins: false
   , isShowingRules: true
+  , isShowingSidebar: false
   }
 };
