@@ -9,14 +9,13 @@ export default class extends React.Component {
     this.model = props.model;
     this.update = props.update;
     this.view = props.view;
-    this.ignite = props.ignite;
     this.subscriptions = props.subscriptions;
 
     this.state = {...this.model};
   }
 
   componentDidMount() {
-    if(this.ignite) this.ignite(this.dispatch, this.update);
+    if(this.update.init) this.dispatch(this.update.init())
   }
 
   dispatch = (action) => {

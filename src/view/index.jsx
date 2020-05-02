@@ -26,12 +26,12 @@ export default (dispatch, actions, model ) => (
             </div>
             <div>
               <span>
-                And have an
+                {'And have an '}
               </span>
               <a href='https://www.amazon.com/dp/1250209056/ref=cm_sw_em_r_mt_dp_U_0EUDEbR4Q423X' alt='978-1250209054' target='_blank'>
-                Iching book
+                {'Iching book'}
               </a>
-              <span>ready.
+              <span>{' ready.'}
               </span>
             </div>
           </div>

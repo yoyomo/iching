@@ -4,6 +4,7 @@ export const HEADS_VALUE = 3;
 export const TAILS_VALUE = 2;
 
 export default {
+  init: () => (model, subscriptions) => [{...model}, subscriptions.listenToKeyboard()],
   chooseCoinSides: (r, c, value) => model => ({...model, ...updateCoinValues(model, r, c, value)}),
   chooseCoinTotals: (r, value) => model => {
     const lines = model.lines.slice();
@@ -28,7 +29,7 @@ export default {
     toggles[attr] = on === undefined || on === null ? !model.toggles[attr] : on;
     return ({...model, toggles});
   },
-  reset: () => model => [{...model}, reloadPage()],
+  reset: () => (model, subscriptions) => [{...model}, subscriptions.reloadPage()],
 }
 
 const updateCoinValues = (model, r, c, value) => {

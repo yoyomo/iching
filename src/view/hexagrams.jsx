@@ -146,7 +146,7 @@ export const HumanReadableChangingLines = ({changedLines}) => {
   if(!changedLines) return <div/>;
   return (
     <div className='f6 mv3 sans-serif flex flex-column tc'>
-      {changedLines.map(changedLine => {
+      {changedLines.map((changedLine, i) => {
         let lineString = ' line';
         switch(changedLine){
           case 1:
@@ -169,7 +169,7 @@ export const HumanReadableChangingLines = ({changedLines}) => {
             break;
         }
 
-        return <div className='mt1'>{lineString}</div> 
+        return <div key={'human-readable-lines-'+i} className='mt1'>{lineString}</div> 
       })}
     </div>
   )
