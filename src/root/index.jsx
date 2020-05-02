@@ -15,7 +15,7 @@ export default class extends React.Component {
   }
 
   componentDidMount() {
-    if(this.update.init) this.dispatch(this.update.init())
+    if (this.update.init) this.dispatch(this.update.init())
   }
 
   dispatch = (action) => {

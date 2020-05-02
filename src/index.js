@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import Root from "./core";
+import Root from "./root";
 import Model from './model';
 import Update from './update';
 import View from './view';
