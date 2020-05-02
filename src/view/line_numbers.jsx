@@ -1,6 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
+import {Tokens} from './tokens.jsx';
+
 export const LINE_NUMBERS = 6;
 
 export const LineNumbers = (dispatch, actions, model) => (
@@ -10,12 +12,10 @@ export const LineNumbers = (dispatch, actions, model) => (
         <div>
           {LINE_NUMBERS-r}:
         </div>
-        <input
-          className='db'
-          type='number'
-          onInput={(e) => dispatch(actions.chooseCoinTotals(r, e.target.valueAsNumber))}
-          value={(lineValue || null)}
-        />
+        <Tokens 
+          showProbability={false}
+          selectedValue={model.lines[r]}
+          onChoice={(lineValue) => dispatch(actions.chooseCoinTotals(r, lineValue))} />
       </div>
     ))}
   </div>

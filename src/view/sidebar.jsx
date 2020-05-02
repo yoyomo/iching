@@ -1,20 +1,32 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import {HamburgerSVG} from '../assets/svgs.jsx';
-import circle_i_ching from '../assets/img/circle_i_ching.png';
+import {HamburgerSVG, CloseSVG} from '../assets/svgs.jsx';
+import bagua from '../assets/img/bagua.png';
+import {Methods} from '../model';
 
 export const Sidebar = (dispatch, actions, model) => (
-  <div>
-    {model.toggles.isShowingSidebar ? 
-      <div className='flex flex-column'>
-        <img src={circle_i_ching} className='w3 h3 o-70'/>
+  <div className="absolute h-100 flex flex-row">
+    {model.toggles.isShowingSidebar && ( 
+      <div className='flex flex-column bg-light-gray h-100'>
+        {Methods.map(method => (
+          <div key={'method-' + method.name}
+            className={`${method.name === model.method ? 'bg-heads white' : ''} pa2 pointer`}
+            onClick={() => dispatch(actions.changeMethod(method.name))}
+          >
+            {method.label}
+          </div>
+        ))}
+        <img src={bagua} className='absolute bottom-0 pa3 w3 h3 o-70'/>
       </div>
+    )}
+    <div className='pointer pa2 w2 h2 fill-tool-button' onClick={() => dispatch(actions.toggle('isShowingSidebar'))}>
+      {model.toggles.isShowingSidebar ?
+        <CloseSVG width={24} height={24}/>
       :
-      <div className='absolute pointer w2 h2 fill-tool-button' onClick={() => dispatch(actions.toggle('isShowingSidebar'))}>
-        <HamburgerSVG />
-      </div>
-    }
+      <HamburgerSVG width={32} height={32}/>
+      }
+    </div>
   </div>
 )
 

@@ -33,6 +33,7 @@ export const CoinSelection = ({...domProps}) => (
   </div>
 );
 
+
 export const AllCoinOptions = (dispatch, actions, model) => (
   <div className='flex flex-column'>
     {model.coins.map((row, r) => (

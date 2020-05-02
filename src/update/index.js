@@ -17,13 +17,14 @@ export default {
 
     if(model.currentSelection < 0) return ({...model});
 
-    const lines = model.lines.slice();
+    let lines = model.lines.slice();
     lines[model.currentSelection.r] = value;
 
     let currentSelection = {...model.currentSelection};
     currentSelection.r--;
-    return ({...model, lines, currectSelection});
+    return ({...model, lines, currentSelection});
   },
+  changeMethod: (methodName) => model => ({...model, method: methodName}),
   toggle: (attr, on) => model => {
     const toggles = {...model.toggles};
     toggles[attr] = on === undefined || on === null ? !model.toggles[attr] : on;

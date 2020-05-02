@@ -9,8 +9,9 @@ import { EditCoins } from './edit_coins.jsx';
 import {Sidebar} from './sidebar.jsx';
 
 export default (dispatch, actions, model ) => (
-  <div>
+  <>
     {Sidebar(dispatch, actions, model)}
+    <div>
     <div className='min-vh-100 db'>
       <div className='w-100 tc tracked sans-serif'>
         <div className='f1 b pt4 pb3'>
@@ -19,7 +20,7 @@ export default (dispatch, actions, model ) => (
         <div className='f3 b pb4'>
           The Book of Changes
         </div>
-        { model.toggles.isShowingRules ? 
+        { model.toggles.isShowingRules && (
           <div className='serif f5 o-70'>
             <div >
               Iching only requires you to roll 3 coins, 6 times.
@@ -35,18 +36,17 @@ export default (dispatch, actions, model ) => (
               </span>
             </div>
           </div>
-          : null
-        }
+        )}
       </div>
       <div className='flex flex-row w-100 justify-center pt1'>
         {FirstHexagram(dispatch, actions, model)}
         {ChangingLines(dispatch, actions, model)}
         {SecondHexagram(dispatch, actions, model)}
       </div>
-      { !isReadingComplete(model.lines) ? 
+      { !isReadingComplete(model.lines) && (
         <div className='flex flex-column'>
           {ThrowCoins(dispatch, actions, model)}
-          {model.toggles.isShowingRules ? 
+          {model.toggles.isShowingRules &&
             <div className='serif f5 o-70 tc'>
               <div>
                 Throw physical coins. Then click according to (h)eads and (t)ails,
@@ -58,12 +58,11 @@ export default (dispatch, actions, model ) => (
                 type 6, 7, 8, or 9 for each line
               </div>
             </div>
-            : null
           }
         </div>
-        : null
-      }
+      )}
     </div>
     {EditCoins(dispatch, actions, model)}
-  </div>
+    </div>
+  </>
 )

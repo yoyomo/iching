@@ -90,6 +90,13 @@ export const hexagrams = [
 , {kanji: "未濟", wikiChinese: "wèi jì", wikiName: "Not Yet Fording", glyph: "䷿", bookChinese: "Wei chi", bookName: "Before Completion"}
 ]
 
+export const Methods = [
+  {name: 'three-coins', label: 'Three Coins'},
+  {name: 'yarrow-sixteen-tokens', label: '16 Tokens'},
+  {name: 'yarrow-two-coins', label: 'Two Coins'},
+  {name: 'yarrow-stalk', label: 'Yarrow Stalk'} 
+]
+
 export default {
   coins: new Array(NUMBER_OF_LINES).fill(new Array(NUMBER_OF_COINS).fill(0))
   , lines: new Array(NUMBER_OF_LINES).fill(0)
@@ -99,7 +106,9 @@ export default {
   , currentSelection: {
     r: NUMBER_OF_LINES - 1
     , c: 0 
-  }  
+  }
+  , method: 'yarrow-sixteen-tokens' 
+  
   , toggles: {
     isEditingCoins: false
     , isShowingRules: true
