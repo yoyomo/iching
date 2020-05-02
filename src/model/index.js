@@ -90,20 +90,19 @@ export const hexagrams = [
 , {kanji: "未濟", wikiChinese: "wèi jì", wikiName: "Not Yet Fording", glyph: "䷿", bookChinese: "Wei chi", bookName: "Before Completion"}
 ]
 
-export const model =
-{
+export default {
   coins: new Array(NUMBER_OF_LINES).fill(new Array(NUMBER_OF_COINS).fill(0))
-, lines: new Array(NUMBER_OF_LINES).fill(0)
-//, lines: [6,9,6,9,6,9]
-//, lines: [7,8,7,8,7,8]
-//, lines: [7,6,9,8,7,6]
-, currentSelection: {
+  , lines: new Array(NUMBER_OF_LINES).fill(0)
+  //, lines: [6,9,6,9,6,9]
+  //, lines: [7,8,7,8,7,8]
+  //, lines: [7,6,9,8,7,6]
+  , currentSelection: {
     r: NUMBER_OF_LINES - 1
-  , c: 0 
-}  
-, toggles: {
+    , c: 0 
+  }  
+  , toggles: {
     isEditingCoins: false
-  , isShowingRules: true
-  , isShowingSidebar: false
+    , isShowingRules: true
+    , isShowingSidebar: false
   }
 };

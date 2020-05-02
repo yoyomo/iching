@@ -1,3 +1,4 @@
+.no-select { user-select: none }
 .vw-100 { width: 100vw; }
 
 .bg-heads { background-color: #cc5e11 }
@@ -9,3 +10,6 @@
 .bl-none { border-left: none }
 .br-none { border-right: none }
 .bt-none { border-top: none }
+
+
+.fill-tool-button { fill: #ddd }
