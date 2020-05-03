@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import { LINE_NUMBERS } from './line_numbers.jsx';
+import { LINE_NUMBERS } from './line-numbers.jsx';
 
 const HEADS_VALUE = 3;
 const TAILS_VALUE = 2;

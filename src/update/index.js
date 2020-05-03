@@ -52,7 +52,7 @@ const updateCoinValues = (model, r, c, side) => {
 
   if(model.method ==='yarrow-two-coins'){
     value = side === 'heads' ? 2 : 3;
-  } else if (model.method === 'three-coins') {
+  } else {
     value = side === 'heads' ? 3 : 2;
   }
 

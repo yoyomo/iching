@@ -1,8 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import { AllCoinOptions } from './coin_options.jsx';
-import { LineNumbers } from './line_numbers.jsx';
+import { AllCoinOptions } from './coin-options.jsx';
+import { LineNumbers } from './line-numbers.jsx';
 
 export const ToolButton = ({right, left, onClick, danger, text, isSelected}) => (
   <div className={`pa2 ${right? 'fr' : left ? 'fl' : ''} dib`} onClick={onClick}>

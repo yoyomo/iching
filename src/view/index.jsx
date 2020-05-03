@@ -1,11 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import { AllCoinOptions } from './coin_options.jsx'
-import { LineNumbers } from './line_numbers.jsx'
+import { AllCoinOptions } from './coin-options.jsx'
+import { LineNumbers } from './line-numbers.jsx'
 import { FirstHexagram, SecondHexagram, ChangingLines, isReadingComplete } from './hexagrams.jsx'
-import { ThrowCoins } from './throw_coins.jsx';
-import { EditCoins } from './edit_coins.jsx';
+import { ThrowCoins } from './throw-coins.jsx';
+import { EditCoins } from './edit-coins.jsx';
 import {Sidebar} from './sidebar.jsx';
 import { Tokens } from './tokens.jsx';
 

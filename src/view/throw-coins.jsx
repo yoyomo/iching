@@ -1,8 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import { CoinSelection } from './coin_options.jsx';
-import {Tokens} from './tokens.jsx';
+import { CoinSelection } from './coin-options.jsx';
+import {Tokens} from './tokens.jsx'
+import { StalkBundles } from './stalk-bundles.jsx';
 import { times } from '../utils/arrays.mjs';
 
 export const ThrowCoins = (dispatch, actions, model) => (
@@ -36,6 +37,12 @@ export const ThrowCoins = (dispatch, actions, model) => (
         />
         )
       })
+    )}
+    {model.method === 'yarrow-stalk' && (
+      <StalkBundles
+        onChoice={(coinIndex, value) => dispatch(actions.chooseCurrentRowCoinSide(coinIndex, value))}
+        bundles={model.coins[model.currentSelection.r]}
+      />
     )}
   </div>
 )
