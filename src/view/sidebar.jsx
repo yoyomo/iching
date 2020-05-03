@@ -6,7 +6,7 @@ import bagua from '../assets/img/bagua.png';
 import {Methods} from '../model';
 
 export const Sidebar = (dispatch, actions, model) => (
-  <div className="absolute h-100 flex flex-row">
+  <div className="flex flex-row">
     {model.toggles.isShowingSidebar && ( 
       <div className='flex flex-column bg-light-gray h-100'>
         {Methods.map(method => (
@@ -20,12 +20,14 @@ export const Sidebar = (dispatch, actions, model) => (
         <img src={bagua} className='absolute bottom-0 pa3 w3 h3 o-70'/>
       </div>
     )}
-    <div className='pointer pa2 w2 h2 fill-tool-button' onClick={() => dispatch(actions.toggle('isShowingSidebar'))}>
-      {model.toggles.isShowingSidebar ?
-        <CloseSVG width={24} height={24}/>
-      :
-      <HamburgerSVG width={32} height={32}/>
-      }
+    <div>
+      <div className='absolute pointer pa2 fill-tool-button' onClick={() => dispatch(actions.toggle('isShowingSidebar'))}>
+        {model.toggles.isShowingSidebar ?
+          <CloseSVG width={24} height={24}/>
+          :
+          <HamburgerSVG width={32} height={32}/>
+        }
+      </div>
     </div>
   </div>
 )
