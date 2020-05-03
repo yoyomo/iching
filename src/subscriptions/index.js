@@ -1,17 +1,15 @@
-import {HEADS_VALUE, TAILS_VALUE } from '../update';
-
 export default {
 
   listenToKeyboard: () => (dispatch, actions) => {
 
     document.body.addEventListener('keypress', e => {
-      if(e.key === 'h' || e.key === ''+HEADS_VALUE){
-        dispatch(actions.chooseCurrentCoinSide(HEADS_VALUE));
-      } else if (e.key === 't' || e.key === ''+TAILS_VALUE) {
-        dispatch(actions.chooseCurrentCoinSide(TAILS_VALUE));
+      if(e.key === 'h'){
+        dispatch(actions.chooseCurrentCoinSide("heads"));
+      } else if (e.key === 't') {
+        dispatch(actions.chooseCurrentCoinSide('tails'));
       } 
       else if(e.key === '6' || e.key === '7' || e.key === '8' || e.key === '9') {
-        dispatch(actions.chooseCurrentCoinTotal(parseInt(e.key)))
+        dispatch(actions.chooseCurrentLineTotal(parseInt(e.key)))
       }
     })
   },

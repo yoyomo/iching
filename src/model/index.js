@@ -97,7 +97,7 @@ export const Methods = [
   {name: 'yarrow-stalk', label: 'Yarrow Stalk'} 
 ]
 
-export default {
+export const initModel = () => ({
   coins: new Array(NUMBER_OF_LINES).fill(new Array(NUMBER_OF_COINS).fill(0))
   , lines: new Array(NUMBER_OF_LINES).fill(0)
   //, lines: [6,9,6,9,6,9]
@@ -107,11 +107,13 @@ export default {
     r: NUMBER_OF_LINES - 1
     , c: 0 
   }
-  , method: 'yarrow-sixteen-tokens' 
-  
+  , method: localStorage.getItem('method') || 'three-coins' 
+  , twoCoinPhase: 'first'
   , toggles: {
     isEditingCoins: false
-    , isShowingRules: true
+    , isShowingRules: (localStorage.getItem('isShowingRules') || 'true') === 'true'
     , isShowingSidebar: false
   }
-};
+});
+
+export default {...initModel()}

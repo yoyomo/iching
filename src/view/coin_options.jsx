@@ -6,30 +6,31 @@ import { LINE_NUMBERS } from './line_numbers.jsx';
 const HEADS_VALUE = 3;
 const TAILS_VALUE = 2;
 
-export const Coin = ({value, cell, onChoice}) => {
+export const Coin = ({method, side, cell, onChoice}) => {
 
-  const isHeads = value === HEADS_VALUE;
-  const isTails = value === TAILS_VALUE;
+  const headsValue = method === 'yarrow-two-coins' ? TAILS_VALUE : HEADS_VALUE;
+  const tailsValue = method === 'yarrow-two-coins' ? HEADS_VALUE : TAILS_VALUE;
+  const value = (side === 'heads' && headsValue) || (side === 'tails' && tailsValue);
   const isSelected = cell === value;
 
   let coinClassName = 'h3 w3 br4 ma2 flex flex-column tc justify-center shadow-3';
 
   if (isSelected) coinClassName += ' bw2 b--solid b--yellow '
-  coinClassName += isHeads ? ' bg-heads ' : ' bg-tails ';
+  coinClassName += side === 'heads' ? ' bg-heads ' : ' bg-tails ';
 
   return (
     <div 
       className={coinClassName}
-      onClick={() => onChoice(value)} >
-      {isHeads ? 'heads': 'tails'}
+      onClick={() => onChoice(side)} >
+      {side}
     </div>
   )
 }
 
 export const CoinSelection = ({...domProps}) => (
   <div className='ph2 pointer white tc flex flex-row sans-serif'>
-    <Coin {...domProps} value={HEADS_VALUE}/>
-    <Coin {...domProps} value={TAILS_VALUE}/>
+    <Coin {...domProps} side="heads"/>
+    <Coin {...domProps} side="tails"/>
   </div>
 );
 

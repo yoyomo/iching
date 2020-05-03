@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-export const Tokens  = ({onChoice, showProbability, selectedValue}) => (
+export const Tokens  = ({onChoice, showProbability, selectedValue, method}) => (
   [6,7,8,9].map(lineValueChoice => {
     let backgroundColor = '';
     let probability = 0;
@@ -14,17 +14,34 @@ export const Tokens  = ({onChoice, showProbability, selectedValue}) => (
         break;
       case 7:
         backgroundColor = 'bg-tails white';
-        probability = 5;
+        if(method.indexOf('yarrow') !== -1){
+          probability = 5;
+        } else {
+          probability = 3;
+        }
         break;
       case 8:
         backgroundColor = 'bg-heads white';
-        probability = 7;
+        if(method.indexOf('yarrow') !== -1){
+          probability = 7;
+        } else {
+          probability = 3;
+        }
         break;
       case 9:
         backgroundColor = 'bg-white black b--light-gray';
-        probability = 3;
+        if(method.indexOf('yarrow') !== -1){
+          probability = 3;
+        } else {
+          probability = 1;
+        }
         probabilityDivisor = '';
         break;
+    }
+    let buttonClass = 'pointer shadow-4';
+    if(!onChoice) {
+      backgroundColor = '';
+      buttonClass = 'ba b--light-gray gray'
     }
 
     return (
@@ -33,9 +50,9 @@ export const Tokens  = ({onChoice, showProbability, selectedValue}) => (
         className="mb2"
       >
         <div 
-          className={`f3 pa2 ma2 pointer tc br4 h3 w3 flex flex-row justify-center items-center sans-serif shadow-4 
+          className={`f3 pa2 ma2 tc br4 h3 w3 flex flex-row justify-center items-center sans-serif ${buttonClass}
           ${backgroundColor} ${selectedValue === lineValueChoice ? 'bw2 b--solid b--yellow' : ''}`}
-          onClick={() => onChoice(lineValueChoice)}>
+          onClick={() => onChoice && onChoice(lineValueChoice)}>
           {lineValueChoice}
         </div>
         { showProbability && (

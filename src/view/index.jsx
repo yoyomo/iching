@@ -7,6 +7,7 @@ import { FirstHexagram, SecondHexagram, ChangingLines, isReadingComplete } from 
 import { ThrowCoins } from './throw_coins.jsx';
 import { EditCoins } from './edit_coins.jsx';
 import {Sidebar} from './sidebar.jsx';
+import { Tokens } from './tokens.jsx';
 
 export default (dispatch, actions, model ) => (
   <>
@@ -47,6 +48,7 @@ export default (dispatch, actions, model ) => (
         <div className='flex flex-column'>
           {ThrowCoins(dispatch, actions, model)}
           {model.toggles.isShowingRules &&
+            <>
             <div className='serif f5 o-70 tc'>
               <div>
                 Throw physical coins. Then click according to (h)eads and (t)ails,
@@ -57,12 +59,24 @@ export default (dispatch, actions, model ) => (
               <div className='o-90 f6'>
                 type 6, 7, 8, or 9 for each line
               </div>
+              <br/>
+              {model.method !== 'yarrow-sixteen-tokens' && (
+                <div>
+                  Probabilities:
+                </div>
+              )}
             </div>
+              {model.method !== 'yarrow-sixteen-tokens' && (
+                <div className='flex flex-row justify-center flex-wrap'>
+                  <Tokens showProbability={true} method={model.method}/>
+                </div>
+              )}
+            </>
           }
         </div>
       )}
     </div>
-    {EditCoins(dispatch, actions, model)}
+      {EditCoins(dispatch, actions, model)}
     </div>
   </>
 )

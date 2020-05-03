@@ -11,6 +11,7 @@ export const ThrowCoins = (dispatch, actions, model) => (
       times(3).map( i => (
         <CoinSelection
           key={'throw-coins-'+i}
+          method={model.method}
           onChoice={value => dispatch(actions.chooseCurrentRowCoinSide(i, value))}
           cell={model.currentSelection.r >= 0 && model.coins[model.currentSelection.r][i]}
         />
@@ -19,8 +20,22 @@ export const ThrowCoins = (dispatch, actions, model) => (
     {model.method === 'yarrow-sixteen-tokens' && (
       <Tokens 
         showProbability={true}
+        method={model.method}
         selectedValue={model.lines[model.currentSelection.r]}
-        onChoice={(lineValue) => dispatch(actions.chooseCurrentCoinTotal(lineValue))} />
+        onChoice={(lineValue) => dispatch(actions.chooseCurrentLineTotal(lineValue))} />
+    )}
+    {model.method === 'yarrow-two-coins' && (
+      times(2).map( i => {
+        const coinIndex = i + (model.twoCoinPhase === 'second' ? 1 : 0)
+        return (
+        <CoinSelection
+          key={'throw-coins-'+coinIndex}
+          method={model.method}
+          onChoice={value => dispatch(actions.chooseCurrentRowCoinSide(coinIndex, value))}
+          cell={model.currentSelection.r >= 0 && model.coins[model.currentSelection.r][coinIndex]}
+        />
+        )
+      })
     )}
   </div>
 )
