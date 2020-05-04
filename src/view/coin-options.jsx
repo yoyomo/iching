@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 import { LINE_NUMBERS } from './line-numbers.jsx';
+import { StalkBundles } from './stalk-bundles.jsx';
 
 const HEADS_VALUE = 3;
 const TAILS_VALUE = 2;
@@ -43,15 +44,22 @@ export const AllCoinOptions = (dispatch, actions, model) => (
           {LINE_NUMBERS - r}:
         </div>
         <div className='flex flex-row flex-wrap tc justify-center'>
-          {row.map((cell, c) => (
-            <CoinSelection
-              key={'coin-selection-'+c}
-              onChoice={(value) => dispatch(actions.chooseCoinSides(r, c, value))}
-              cell={cell}
-            />
-          ))}
-        </div>
+          {model.method === 'yarrow-stalk' ?
+            <StalkBundles 
+              onChoice={(coinIndex, side) => dispatch(actions.chooseCoinSides(r, coinIndex, side))}
+            bundles={row} />
+            :
+              row.map((cell, c) => (
+                <CoinSelection
+                  key={'coin-selection-'+c}
+                  method={model.method}
+                  onChoice={side => dispatch(actions.chooseCoinSides(r, c, side))}
+                  cell={cell}
+                />
+              ))
+          }
+      </div>
       </div>
     ))}
-  </div>
-)
+    </div>
+              )

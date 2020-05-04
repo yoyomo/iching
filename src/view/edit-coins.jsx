@@ -18,15 +18,14 @@ export const EditCoins = (dispatch, actions, model) => (
       <ToolButton left={true} onClick={() => dispatch(actions.toggle('isEditingCoins'))} text='Edit coins' isSelected={model.toggles.isEditingCoins}/>
       <ToolButton right={true} onClick={() => dispatch(actions.toggle('isShowingRules'))} text='Rules' isSelected={model.toggles.isShowingRules}/>
     </div>
-    {model.toggles.isEditingCoins ?
+    {model.toggles.isEditingCoins && (
       <div>
         <div className='flex flex-row flex-wrap'>
-          {AllCoinOptions(dispatch, actions, model)}
+          {model.method !== 'yarrow-sixteen-tokens' && AllCoinOptions(dispatch, actions, model)}
           {LineNumbers(dispatch, actions, model)}
         </div>
         <ToolButton danger={true} onClick={() => dispatch(actions.reset())} text='Reset' />
       </div>
-      : null
-    }
+    )}
   </div>
 )

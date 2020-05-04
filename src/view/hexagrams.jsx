@@ -239,3 +239,12 @@ export const ChangingLines = (dispatch, actions, model) => {
     </div>
   )
 }
+ 
+export const Hexagrams = (dispatch, actions, model) => (
+  <div className='flex flex-row w-100 justify-center pt1'>
+    {FirstHexagram(dispatch, actions, model)}
+    {ChangingLines(dispatch, actions, model)}
+    {SecondHexagram(dispatch, actions, model)}
+  </div>
+)
+
