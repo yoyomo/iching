@@ -1,25 +1,39 @@
 {
-  "name": "muvisjs",
-  "version": "1.0.0",
-  "description": "",
-  "main": "serve.js",
+  "name": "iching",
+  "version": "1.1.0",
+  "description": "Iching ( Yijing )",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack-dev-server --host 0.0.0.0 --open",
-    "build": "webpack"
+    "start": "parcel src/index.html",
+    "build": "rm -rf docs/; parcel build src/index.html --out-dir docs/ --public-url ./"
   },
-  "author": "Armando Ortiz",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
-    "muvjs": "^2.3.3",
-    "raw-loader": "^4.0.0",
-    "style-loader": "^1.1.3"
+    "react": "^16.13.0",
+    "react-dom": "^16.13.0",
+    "tachyons": "^4.11.1"
   },
   "devDependencies": {
-    "copy-webpack-plugin": "^5.1.1",
-    "tachyons": "^4.11.1",
-    "webpack": "^4.42.0",
-    "webpack-cli": "^3.3.11",
-    "webpack-dev-server": "^3.10.3"
+    "@babel/core": "^7.8.7",
+    "babel-preset-nano-react-app": "^0.1.0",
+    "parcel-bundler": "^1.12.4"
+  },
+  "babel": {
+    "presets": [
+      "nano-react-app"
+    ],
+    "plugins": [
+      [
+        "@babel/plugin-proposal-class-properties",
+        {
+          "loose": true
+        }
+      ],
+      [
+        "@babel/plugin-transform-react-jsx",
+        {
+          "pragmaFrag": "React.Fragment"
+        }
+      ]
+    ]
   }
 }

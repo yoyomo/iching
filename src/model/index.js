@@ -90,19 +90,30 @@ export const hexagrams = [
 , {kanji: "未濟", wikiChinese: "wèi jì", wikiName: "Not Yet Fording", glyph: "䷿", bookChinese: "Wei chi", bookName: "Before Completion"}
 ]
 
-export const model =
-{
+export const Methods = [
+  {name: 'three-coins', label: 'Three Coins'},
+  {name: 'yarrow-sixteen-tokens', label: '16 Tokens'},
+  {name: 'yarrow-two-coins', label: 'Two Coins'},
+  {name: 'yarrow-stalk', label: 'Yarrow Stalk'} 
+]
+
+export const initModel = () => ({
   coins: new Array(NUMBER_OF_LINES).fill(new Array(NUMBER_OF_COINS).fill(0))
-, lines: new Array(NUMBER_OF_LINES).fill(0)
-//, lines: [6,9,6,9,6,9]
-//, lines: [7,8,7,8,7,8]
-//, lines: [7,6,9,8,7,6]
-, currentSelection: {
+  , lines: new Array(NUMBER_OF_LINES).fill(0)
+  //, lines: [6,9,6,9,6,9]
+  //, lines: [7,8,7,8,7,8]
+  //, lines: [7,6,9,8,7,6]
+  , currentSelection: {
     r: NUMBER_OF_LINES - 1
-  , c: 0 
-}  
-, toggles: {
-    isEditingCoins: false
-  , isShowingRules: true
+    , c: 0 
   }
-};
+  , method: localStorage.getItem('method') || 'three-coins' 
+  , twoCoinPhase: 'first'
+  , toggles: {
+    isEditingCoins: false
+    , isShowingRules: (localStorage.getItem('isShowingRules') || 'true') === 'true'
+    , isShowingSidebar: false
+  }
+});
+
+export default {...initModel()}
